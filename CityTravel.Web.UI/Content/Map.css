@@ -1,0 +1,77 @@
+﻿#googleMap
+{
+    width: 100%;
+    height: 100%;
+}
+
+#googleMap img
+{
+    max-width: none;
+}
+
+.map-wrapper #legend
+{
+    position: absolute;
+    float: right;
+    padding: 5px;
+    top: 5px;
+    right: 7px;
+    filter: alpha(Opacity=80);
+    background-color: White;
+    z-index: 0;
+    opacity: 0.8;
+}
+
+.legendEntityBar
+{
+    display: inline-block;
+    width: 30px;
+    margin-left: 10px;
+    vertical-align: middle;
+}
+
+.legendEntityText
+{
+    display: inline-block;
+    margin-left: 5px;
+    font-size: 13px;
+    vertical-align: middle;
+}
+
+.transportTypeWalking
+{
+    border-top: 3px solid #58C56F;
+}
+
+.transportTypeBus
+{
+    border-top: 3px solid #4585FF;
+}
+
+#tooltip
+{
+    display: none;
+    position: absolute;
+    padding: 10px;
+    background: #555;
+    color: #fff;
+    min-width: 75px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-left: 6px solid transparent;
+    padding: 3px 8px;
+    white-space: nowrap;
+}
+
+.ContextMenuGoogle
+{
+    position: absolute;
+    z-index: 1000;
+    display: none;
+}
+
+.ContextMenuGoogle ul
+{
+    padding: 3px 0px;
+    margin: 0px;
+}

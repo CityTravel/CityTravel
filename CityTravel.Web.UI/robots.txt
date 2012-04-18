@@ -1,0 +1,8 @@
+# www.robotstxt.org/
+# http://code.google.com/web/controlcrawlindex/
+
+User-agent: *
+Disallow: /
+Host: http://184.82.120.141/trunkCityTravel
+
+Sitemap: http://184.82.120.141/trunkCityTravel/Sitemap.xml

@@ -1,0 +1,52 @@
+﻿#PrintWin
+{
+	position: absolute;
+	display: none;
+	width: 950px;
+    min-height: 530px;
+}
+ 
+.PrintTxtHeader
+{
+	color: Black;
+	text-align: center;
+}
+ 
+
+.PrintTxtDest
+{
+	margin-left: 32px;
+	font-weight: bold;
+}
+ 
+.PrintTxtAddr
+{
+	display: inline-block;
+	font-weight: normal;
+ 
+}
+ 
+#PrintLegend
+{
+	position: absolute;
+	top: 5%;
+	right: 5%;
+	display: inline-block;
+	float: right;
+	width: 138px; 
+}
+ 
+.ContextMenuGoogle {
+	position: absolute;
+	z-index: 1000;
+}
+ 
+#printMap
+{
+	position: relative;
+	width: 640px;
+	min-height: 600px;
+	text-align: center;
+	margin: 0 auto;
+	border: none; 
+}

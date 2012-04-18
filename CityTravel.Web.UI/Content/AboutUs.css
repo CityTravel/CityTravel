@@ -1,0 +1,64 @@
+﻿.containerAboutUs
+{
+  padding: 14px;
+  margin: 5em auto; 
+  -webkit-border-radius: 7px;
+  -moz-border-radius: 7px;
+  border-radius: 7px;	
+  text-align: justify;
+  width: 90%;
+}
+
+.headerAboutUs
+{
+    font-size: 18px;
+    font-weight: 200;
+    line-height: 27px;
+    font-weight: bold;
+    color: InfoText;
+}
+
+
+.containerAboutUs p
+{
+    font-size: 16px;
+    font-weight: 200;
+    line-height: 27px;	
+}
+
+div.additContColor p, .containerAboutUs
+{
+    text-indent: 32px;
+}
+
+.list
+{
+    display: inline-block;
+    padding: 0px;
+}
+
+.listitem
+{
+    display: list-item;
+    margin-left: 32px;
+    padding-left: 32px;
+    font-size: 16px;
+    font-weight: 200;
+    line-height: 27px;
+    text-align: justify;
+    float: left;
+}
+
+.listitem .well
+{
+    padding: 3px;
+    background-color: White;
+}
+
+.image_container
+{
+    float: right;
+    margin: 0px 0px;
+    padding-right: 5%;
+    padding-top: 10px;
+}

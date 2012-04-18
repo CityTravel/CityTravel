@@ -1,0 +1,22 @@
+﻿.loadingBar
+{
+	position: absolute;
+	display: block;
+	filter: alpha(Opacity=70);
+    opacity: 0.7;
+    background-color: #A8A8A8;
+    width: 360px;
+    min-height: 100%;
+    z-index: 9999;
+}
+
+.loadingBar img
+{
+    position: absolute;
+    display: inline-block;
+    margin-left: 180px;
+    margin-top: 320px;
+    width: 48px;
+    height: 48px;
+}
+

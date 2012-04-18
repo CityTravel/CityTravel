@@ -1,0 +1,44 @@
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <WorkingFolder>$(MSBuildProjectDirectory)</WorkingFolder>
+    <Configuration>Release</Configuration>
+    <SolutionFile>CityTravel.sln</SolutionFile>
+    <NUnitPath>$(WorkingFolder)\packages\NUnit.2.5.10.11092\tools</NUnitPath>
+    <DeployPath>\build\CityTravel</DeployPath>
+
+    <TransformInputFile>CityTravel.Web.UI\Web.config</TransformInputFile>
+    <TransformFile>CityTravel.Web.UI\Web.$(Configuration).config</TransformFile>
+    <TransformOutputFile>$(DeployPath)\Web.config</TransformOutputFile>
+  </PropertyGroup>  
+ 	
+  <UsingTask TaskName="TransformXml"
+             AssemblyFile="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v10.0\Web\Microsoft.Web.Publishing.Tasks.dll"/>
+
+  <Target Name="BuildAll" DependsOnTargets="Compile;Deploy;Transform" />  
+
+  <Target Name="Compile">
+    <Message Text="=== COMPILING $(Configuration) configuration ===" />
+    <MSBuild Projects="$(SolutionFile)"
+             Properties="Configuration=$(Configuration)" />
+  </Target>  
+
+  <Target Name="Deploy">
+     <Message Text="=== DEPLOY LATEST BUILD to $(DeployPath) ===" />
+ 
+     <RemoveDir Directories="$((DeployPath)" />
+     <MakeDir Directories="$(DeployPath)"/>
+
+     <ItemGroup>
+       <DeployWebFiles Include="CityTravel.Web.UI\**\*.*" Exclude="**\*.cs;**\*.csproj;**\*.user;**\obj\**;**\.svn\**;**\*.pdb;**\*.edmx;**\packages.config;**\Web.*.config" />     
+     </ItemGroup>
+
+    <Copy SourceFiles="@(DeployWebFiles)" DestinationFiles="@(DeployWebFiles->'$(DeployPath)\%(RecursiveDir)%(Filename)%(Extension)')" />
+  </Target>
+
+  <Target Name="Transform">
+     <Message Text="=== TRANSFER THE CONFIGURATION FILE ===" />
+     <TransformXml Source="$(TransformInputFile)"
+                   Transform="$(TransformFile)"
+                   Destination="$(TransformOutputFile)" />
+  </Target>
+</Project>

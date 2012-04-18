@@ -1,0 +1,17 @@
+﻿.addroute_map
+{
+    display: inline-block;
+    float: left;
+}
+
+.AddStopFields
+{
+    display: inline-block;
+}
+
+
+.AddRouteFields
+{
+    margin-left: 30px;
+    display: inline-block;
+}

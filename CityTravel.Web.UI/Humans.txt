@@ -1,0 +1,24 @@
+/* TEAM */
+
+                            
+Your title (роль в проекте): 
+
+		Developers:  Okhrimenko Viasheslav, Pavel Shtanko, SergeyDaleckiy, Evgeniy Dolgopalov, Adrey Zavyalov, Sasha Matveev
+		Testers : Valentina Podobed, Anastasia Shatornaya
+		Bisness Atalitic : Velichko Anton
+                            
+Location (Местоположение): Dnepropetrovsk, Ukraine.
+
+							
+/* THANKS */
+							
+Dima Lebedinskiy & Roman Oleynik
+                            
+/* SITE */
+
+                            
+Last update (Обновлено): 2012/02/18 
+
+                            
+
+                            
