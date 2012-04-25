@@ -31,7 +31,7 @@ namespace CityTravel.Web.UI
         /// </param>
         public static void RegisterGlobalFilters(GlobalFilterCollection filters)
         {
-            filters.Add(new HandleErrorAttribute());
+            //filters.Add(new HandleErrorAttribute());
         }
 
         /// <summary>
