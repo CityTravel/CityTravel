@@ -5,7 +5,7 @@
 
 @section JavaScript
 {
-    @{
+<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?v=3&libraries=places&libraries=drawing&sensor=false"></script>
         <script type="text/javascript">
             $(document).ready(function () {
                 $("#type").change(function () {
@@ -27,9 +27,9 @@
                 });
             });
         </script>
-        
+
+    @{
         SquishIt.JavaScript.Add("~/Scripts/My/engine.js");
-        SquishIt.JavaScript.Add(@Url.Content("https://maps.googleapis.com/maps/api/js?v=3&libraries=places&libraries=drawing&sensor=false"));
     }
 }
 
