@@ -1,0 +1,45 @@
+﻿@model IEnumerable<CityTravel.Domain.Entities.Feedback.Feedback>
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Index</title>
+</head>
+<body>
+        <table>
+            <tr>
+                <th></th>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Text</th>
+                <th>Type</th>
+            </tr>
+            @foreach(var item in @Model)
+            {
+                <tr>
+                    <td>
+                        @Html.ActionLink("Delete","Delete",new{Id=@item.Id})
+                    </td>
+                    <td>
+                        @item.Id
+                    </td>
+                    <td>
+                        @item.Name
+                    </td>
+                    <td>
+                        @item.Email
+                    </td>
+                    <td>
+                        @item.Text
+                    </td>
+                    <td>
+                        @item.Type
+                    </td>
+                </tr>
+            }
+        </table>
+</body>
+</html>
