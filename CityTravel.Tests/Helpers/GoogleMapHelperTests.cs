@@ -9,6 +9,8 @@ using NUnit.Framework;
 
 namespace CityTravel.Tests.Helpers
 {
+    using CityTravel.Domain.Entities.Route;
+
     /// <summary>
     /// Google Map Helper Tests
     /// </summary>

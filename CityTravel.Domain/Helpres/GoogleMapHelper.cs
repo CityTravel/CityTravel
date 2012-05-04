@@ -3,23 +3,31 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Text;
-using CityTravel.Domain.Entities;
+
 using CityTravel.Domain.Settings;
 using Microsoft.SqlServer.Types;
 using Newtonsoft.Json.Linq;
 
 namespace CityTravel.Domain.Helpres
 {
-    using System.IO;
-    using System.Web;
-
-    using Newtonsoft.Json;
+    using CityTravel.Domain.DomainModel.Concrete;
+    using CityTravel.Domain.Entities.InvalidWords;
+    using CityTravel.Domain.Entities.Route;
+    using CityTravel.Domain.Repository.Abstract;
+    using CityTravel.Domain.Repository.Concrete;
 
     /// <summary>
     /// Helpers for work with google map api
     /// </summary>
     public static class GoogleMapHelper
     {
+        private static IProvider<InvalidDirection> directionProvider; 
+        
+        static GoogleMapHelper()
+        {
+            directionProvider=new GenericRepository<InvalidDirection>(new DataBaseContext());
+        }
+
         /// <summary>
         /// Distance token
         /// </summary>
@@ -156,7 +164,7 @@ namespace CityTravel.Domain.Helpres
         /// <returns>String with json-formed result wich retrieved from Google API.</returns>
         public static string GetGoogleAnswerForAutocomplete(string address)
         {
-            StringBuilder sb = new StringBuilder();
+            var sb = new StringBuilder();
             var buf = new byte[18192];
 
             // prepare the web page we will be asking for
@@ -214,9 +222,26 @@ namespace CityTravel.Domain.Helpres
         /// <summary>
         /// Gets the steps of direction.
         /// </summary>
-        /// <param name="jsonObject">The json object.</param>
-        /// <returns>Steps of route.</returns>
-        public static List<Step> GetStepsOfDirection(JObject jsonObject)
+        /// <param name="jsonObject">
+        /// The json object.
+        /// </param>
+        /// <param name="invalidDirections">
+        /// The invalid directions.
+        /// </param>
+        /// <param name="validWords">
+        /// The valid Words.
+        /// </param>
+        /// <param name="invalidWords">
+        /// The invalid Words.
+        /// </param>
+        /// <returns>
+        /// Steps of direction.
+        /// </returns>
+        public static List<Step> GetStepsOfDirection(
+            JObject jsonObject,
+            IEnumerable<string> invalidDirections,
+            IEnumerable<string> validWords,
+            IEnumerable<string> invalidWords)
         {
             var steps = new List<Step>();
             int i = 0;
@@ -229,22 +254,100 @@ namespace CityTravel.Domain.Helpres
                 }
 
                 string distanceToken = string.Format(Settings.GeneralSettings.GetGoogleMapDistanceValueString, i);
-                double time = (double)jsonObject.SelectToken(distanceToken) / (((double)WalkingSpeed / Hour) * Kilometer);
-                string instructionToken = string.Format( Settings.GeneralSettings.GetGoogleMapHtmlInstruction, i);
+                double time = (double)jsonObject.SelectToken(distanceToken)
+                              / (((double)WalkingSpeed / Hour) * Kilometer);
+                string instructionToken = string.Format(Settings.GeneralSettings.GetGoogleMapHtmlInstruction, i);
                 string stepTime = string.Format(time.ToString("F1") + "{0}", "мин"); // ???
+                var instruction = (string)jsonObject.SelectToken(instructionToken.Replace("??", string.Empty));
+                instruction = instruction.Replace("<b>", string.Empty);
+                instruction = instruction.Replace("</b>", string.Empty);
 
                 steps.Add(
                     new Step
                     {
-                        Instruction = (string)jsonObject.SelectToken(instructionToken.Replace("??", string.Empty)),
+                        Instruction = instruction,
                         Time = stepTime,
-                        Length = Route.GetRoundDistance((double)jsonObject.SelectToken(distanceToken))
+                        Length = DimensionConverter.GetRoundDistance((double)jsonObject.SelectToken(distanceToken))
                     });
                 i++;
             }
             while (true);
-           
+
+            foreach (var step in steps)
+            {
+                if (invalidDirections != null && validWords != null && invalidWords != null)
+                {
+                    step.Instruction = DeleteDirectionWords(step.Instruction, invalidDirections);
+                    step.Instruction = DeleteInvalidCharacters(step.Instruction, validWords, (IList<string>)invalidWords);
+                }
+               
+            }
+
             return steps;
+        }
+
+        /// <summary>
+        /// Delete invalid words.
+        /// </summary>
+        /// <param name="word">
+        /// The word.
+        /// </param>
+        /// <param name="directions">
+        /// The directions.
+        /// </param>
+        /// <returns>
+        /// Correct word.
+        /// </returns>
+        private static string DeleteDirectionWords(string word, IEnumerable<string> directions)
+        {
+            string result = string.Empty;
+            if (word != null)
+            {
+                foreach (var direction in directions)
+                {
+                    if (word.Contains(direction))
+                    {
+                        result = word.Replace(direction, string.Empty);
+                        break;
+                    }
+                    else
+                    {
+                        result = word;
+                    }
+                }
+            }
+
+            return result;
+        }
+
+        /// <summary>
+        /// Deletes the invalid characters.
+        /// </summary>
+        /// <param name="word">The word.</param>
+        /// <param name="validWords">The valid words.</param>
+        /// <param name="invalidWords">The invalid words.</param>
+        /// <returns>Delete invalid characters from text version.</returns>
+        private static string DeleteInvalidCharacters(string word, IEnumerable<string> validWords, IList<string> invalidWords)
+        {
+            string result = string.Empty;
+            if (word != null && validWords != null && invalidWords != null)
+            {
+                foreach (var invalidWord in invalidWords)
+                {
+                    if (word.Contains(invalidWord))
+                    {
+                        result = word.Replace(invalidWord, validWords.ElementAt(invalidWords.IndexOf(invalidWord)));
+                        break;
+                    }
+                    else
+                    {
+                        result = word;
+                    }
+                }
+            }
+           
+
+            return result;
         }
 
         /// <summary>

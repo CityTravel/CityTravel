@@ -4,6 +4,8 @@ using System.Web.Mvc;
 
 namespace CityTravel.Web.UI.Models
 {
+    using CityTravel.Domain.Entities.Route;
+
     /// <summary>
     /// The add route view model.
     /// </summary>
@@ -37,6 +39,16 @@ namespace CityTravel.Web.UI.Models
         [Display(Name = "Тип маршрута: ")]
         public IEnumerable<SelectListItem> Type { get; set; }
 
+        /// <summary>
+        /// Gets or sets the routes.
+        /// </summary>
+        /// <value>
+        /// The routes.
+        /// </value>
+        [Required]
+        public IEnumerable<SimpleRouteViewModel> Routes { get; set; }
+
+        
         #endregion
     }
 }

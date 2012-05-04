@@ -1,0 +1,36 @@
+﻿.ui-jqdropdownlist-button
+{
+	padding: 2px 0px 2px 4px;
+	text-align: left;	
+}
+
+.ui-jqdropdownlist-drop-image
+{
+	float: right;
+}
+
+.ui-jqdropdownlist-dropdown {
+	display: none;
+	padding: 3px;
+	position: absolute;
+	z-index: 10000;
+}
+
+.ui-jqdropdownlist-item a table tr td
+{
+	height : 20px;
+}
+
+.ui-jqdropdownlist-item-text
+{	
+	margin-left: 2px;
+	padding: 3px 3px 3px 3px;
+	overflow: hidden;
+	white-space: pre;		
+}
+
+.ui-jqdropdownlist-item-image
+{	
+	border: 0;
+	margin-top: 2px;
+}

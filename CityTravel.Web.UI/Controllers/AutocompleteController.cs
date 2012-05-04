@@ -3,12 +3,13 @@ using System.Linq;
 using System.Text;
 using System.Web.Mvc;
 using CityTravel.Domain.Helpres;
-using CityTravel.Domain.Services.Autocomplete;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
 namespace CityTravel.Web.UI.Controllers
 {
+    using CityTravel.Domain.Services.Autocomplete.Abstract;
+
     /// <summary>
     /// The autocomplete controller.
     /// </summary>

@@ -7,6 +7,8 @@ using NUnit.Framework;
 
 namespace CityTravel.Tests.Domain.Repository
 {
+    using CityTravel.Domain.Entities.Route;
+
     /// <summary>
     /// The generic repository tests.
     /// </summary>

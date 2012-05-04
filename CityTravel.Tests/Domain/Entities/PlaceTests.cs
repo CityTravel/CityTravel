@@ -1,10 +1,11 @@
 ﻿using System.Data.SqlTypes;
-using CityTravel.Domain.Entities;
 using Microsoft.SqlServer.Types;
 using NUnit.Framework;
 
 namespace CityTravel.Tests.Domain.Entities
 {
+    using CityTravel.Domain.Entities.Autocomplete;
+
     /// <summary>
     /// The stop tests.
     /// </summary>
