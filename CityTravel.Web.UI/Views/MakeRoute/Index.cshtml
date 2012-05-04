@@ -42,7 +42,7 @@
 							<img src="@Url.Content("~/Content/images/time.png")" alt=""/>
 							<span data-bind="text: route.Time"></span>
 							<img src="@Url.Content("~/Content/images/header_price.png")" alt=""/>
-							<span data-bind="text: route.Price + ' грн'"></span>
+							<span data-bind="text: route.Price"></span>
 							<img src="@Url.Content("~/Content/images/distance.gif")" alt=""/>
 							<span data-bind="text: route.AllLength"></span>
 							<img src="@Url.Content("~/Content/images/header_bus.png")" alt=""/>
@@ -112,7 +112,8 @@
 {
 	@{
         <script src="@Url.Content("https://maps.googleapis.com/maps/api/js?v=3&libraries=places&libraries=geometry&language=ru&sensor=false&amp;key=ABQIAAAAp_RSJHSrOLSFwByjon74phSLsVbxq6dHeoLR1QV_qRgT4PSTrxTO-51YuK0iLyZz1OS01WSr1iR5EA")" type="text/javascript"></script>
-		SquishIt.JavaScript.Add("~/Scripts/My/Main.js");
+       	
+        SquishIt.JavaScript.Add("~/Scripts/My/Main.js");
 		SquishIt.JavaScript.Add("~/Scripts/My/ControlsNew.js");
 		SquishIt.JavaScript.Add("~/Scripts/My/PrintVersion.js");
 		SquishIt.JavaScript.Add("~/Scripts/My/Path.js");
@@ -122,5 +123,7 @@
 		SquishIt.JavaScript.Add("~/Scripts/My/AutocompleteNew.js");
 		SquishIt.JavaScript.Add("~/Scripts/My/Helpers.js");
 		SquishIt.JavaScript.Add("~/Scripts/Knouckout/knockout-2.0.0.js");
+        SquishIt.JavaScript.Add("~/Scripts/jQuery/jquery.toastmessage.js");
+        
     }
 }

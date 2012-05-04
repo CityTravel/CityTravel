@@ -2,20 +2,23 @@
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
-
-using CityTravel.Domain.Abstract;
-using CityTravel.Domain.DomainModel;
-using CityTravel.Domain.Repository;
-using CityTravel.Domain.Services.Autocomplete;
-using CityTravel.Domain.Services.Segment;
 using CityTravel.Web.UI.Helpers;
-
 using Ninject;
 using Ninject.Web.Mvc;
-using entities = CityTravel.Domain.Entities;
 
 namespace CityTravel.Web.UI
 {
+    using CityTravel.Domain.DomainModel.Abstract;
+    using CityTravel.Domain.DomainModel.Concrete;
+    using CityTravel.Domain.Repository.Abstract;
+    using CityTravel.Domain.Repository.Concrete;
+    using CityTravel.Domain.Services.AuthenticationProvider.Abstract;
+    using CityTravel.Domain.Services.AuthenticationProvider.Concrete;
+    using CityTravel.Domain.Services.Autocomplete.Abstract;
+    using CityTravel.Domain.Services.Autocomplete.Concrete;
+    using CityTravel.Domain.Services.Segment.Abstract;
+    using CityTravel.Domain.Services.Segment.Concrete;
+
     /// <summary>
     /// The mvc application.
     /// </summary>
@@ -31,7 +34,7 @@ namespace CityTravel.Web.UI
         /// </param>
         public static void RegisterGlobalFilters(GlobalFilterCollection filters)
         {
-            //filters.Add(new HandleErrorAttribute());
+            filters.Add(new HandleErrorAttribute());
         }
 
         /// <summary>
@@ -48,6 +51,7 @@ namespace CityTravel.Web.UI
                 "Default",
                 "{controller}/{action}/{id}",
                 new { controller = "MakeRoute", action = "Index", id = UrlParameter.Optional });
+
         }
 
         /// <summary>
@@ -108,12 +112,11 @@ namespace CityTravel.Web.UI
         {
             var kernel = new StandardKernel();
             kernel.Load(Assembly.GetExecutingAssembly());
-
             kernel.Bind(typeof(IProvider<>)).To(typeof(GenericRepository<>));
-           // kernel.Bind<IDataBaseContext>().ToConstant(DbContextFactory.GetInstance.GetContext());
             kernel.Bind<IAutocomplete>().To<CacheAutoComplete>().InThreadScope();
             kernel.Bind<IRouteSeach>().To<RouteSeach>();
             kernel.Bind<IDataBaseContext>().To<DataBaseContext>().InThreadScope();
+            kernel.Bind<IAuthenticationProvider>().To<FormsAuthenticationProvider>().InThreadScope();
 
             return kernel;
         }
@@ -130,5 +133,6 @@ namespace CityTravel.Web.UI
         }
 
         #endregion
+
     }
 }

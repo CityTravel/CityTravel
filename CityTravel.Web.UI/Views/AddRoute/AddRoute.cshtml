@@ -2,72 +2,84 @@
 @{
     ViewBag.Title = "AddRoute";
 }
-
 @section JavaScript
 {
-<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?v=3&libraries=places&libraries=drawing&sensor=false"></script>
+    @{
         <script type="text/javascript">
             $(document).ready(function () {
                 $("#type").change(function () {
                     switch ($(this).val()) {
-                        case "2":
-                            Engine.initRoute();
-                            break;
-                        case "4":
-                            Engine.initRoute();
-                            break;
-                        case "5":
-                            Engine.initNonRoute();
-                            break;
-                        case "3":
-                            Engine.initNonRoute();
-                            break;
-                        default:
+                    case "2":
+                        Engine.initRoute();
+                        break;
+                    case "4":
+                        Engine.initRoute();
+                        break;
+                    case "5":
+                        Engine.initNonRoute();
+                        break;
+                    case "3":
+                        Engine.initNonRoute();
+                        break;
+                    default:
                     }
                 });
             });
         </script>
-
-    @{
+        
         SquishIt.JavaScript.Add("~/Scripts/My/engine.js");
+        SquishIt.JavaScript.Add(@Url.Content("https://maps.googleapis.com/maps/api/js?v=3&libraries=places&libraries=drawing&sensor=false"));
     }
 }
-
-<div class="addroute_map" id="googleMap" style="width: 840px; height: 500px;" ></div>
-<div class="AddRouteFields">
-    @Html.ValidationSummary(true)
-    @using (Html.BeginForm())
-    {
-            <div class="editor-label">
-                @Html.LabelFor(model => model.Type)
-            </div>
-            <div class="editor-field">
-                @Html.DropDownListFor(m => m.Selected, Model.Type, new { @id = "type" })
-                <div class="err_div">
-                    @Html.ValidationMessageFor(model => model.Type, string.Empty, new { @style = "color:red" })
+<div id="mainAddRouteContainer">
+    <div id="routeListContainer">
+        @Html.ListBox("RouteList", new SelectList(Model.Routes, "Id", "Name"), new { style = "height:600px;"})
+        <script>
+            var b = new Array();
+                var a = "(@Model.Routes.ToList().FirstOrDefault())";
+           
+            var b = 1;
+        </script>
+    </div>
+    <div id="addRouteContainer">
+        <div class="addroute_map" id="googleMap" style="width: 900px; height: 600px;">
+        </div>
+        <div class="AddRouteFields">
+            @Html.ValidationSummary(true)
+            @using (Html.BeginForm())
+            {
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.Type)
                 </div>
-            </div>
-            <div class="editor-label">
-                @Html.LabelFor(model => model.Name)
-            </div>
-            <div class="editor-field">
-                @Html.EditorFor(model => model.Name)
-                <div class="err_div">
-                    @Html.ValidationMessageFor(model => model.Name, "", new { @style = "color:red" })
+                <div class="editor-field">
+                    @Html.DropDownListFor(m => m.Selected, Model.Type, new { @id = "type" })
+                    <div class="err_div">
+                        @Html.ValidationMessageFor(model => model.Type, string.Empty, new { @style = "color:red" })
+                    </div>
                 </div>
-            </div>
-            <div class="editor-label" >
-                @Html.LabelFor(model => model.RouteGeography)
-            </div>
-            <div class="editor-field">
-                @Html.EditorFor(model => model.RouteGeography)
-                <div class="err_div">
-                    @Html.ValidationMessageFor(model => model.RouteGeography, "", new { @style = "color:red" })
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.Name)
                 </div>
-            </div>
-            <input type="submit" value="@Resources.AddRoute" />
-    }
-    <br />
-    @Resources.Distance:<br />
-    @Html.TextBox("DistanceText", null, new { @readonly = true, value = "null" })
+                <div class="editor-field">
+                    @Html.EditorFor(model => model.Name)
+                    <div class="err_div">
+                        @Html.ValidationMessageFor(model => model.Name, "", new { @style = "color:red" })
+                    </div>
+                </div>
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.RouteGeography)
+                </div>
+                <div class="editor-field">
+                    @Html.EditorFor(model => model.RouteGeography)
+                    <div class="err_div">
+                        @Html.ValidationMessageFor(model => model.RouteGeography, "", new { @style = "color:red" })
+                    </div>
+                </div>
+                <input type="submit" value="@Resources.AddRoute" />
+            }
+            <br />
+            @Resources.Distance:<br />
+            @Html.TextBox("DistanceText", null, new { @readonly = true, value = "null" })
+        </div>
+    </div>
 </div>

@@ -4,7 +4,7 @@
     <Configuration>Release</Configuration>
     <SolutionFile>CityTravel.sln</SolutionFile>
     <NUnitPath>$(WorkingFolder)\packages\NUnit.2.5.10.11092\tools</NUnitPath>
-    <DeployPath>\build\CityTravel</DeployPath>
+    <DeployPath>\build\trunk</DeployPath>
 
     <TransformInputFile>CityTravel.Web.UI\Web.config</TransformInputFile>
     <TransformFile>CityTravel.Web.UI\Web.$(Configuration).config</TransformFile>

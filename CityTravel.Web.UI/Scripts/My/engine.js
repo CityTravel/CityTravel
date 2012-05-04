@@ -3,17 +3,19 @@ var polyline = null;
 var polylineCoords = [];
 
 var Engine = {
+
     initStop: function () {
         this.initMap();
         this.prepAddStop();
+        this.addEvents();
     },
 
     initRoute: function () {
-        this.initMap();
+        //  this.initMap();
         this.prepAddRoute();
     },
     initNonRoute: function () {
-        this.initMap();
+        // this.initMap();
         this.predAddRoute_NonRoaded();
     },
     map: null,
@@ -28,7 +30,13 @@ var Engine = {
 			};
         map = new google.maps.Map(document.getElementById("googleMap"), mapOptions);
     },
-
+    addEvents: function () {
+        $("#RouteList").change(function () {
+            var id = $(this).find("option:selected").val();
+            var a = '(@Model)';
+            var b = 1;
+        });
+    },
     predAddRoute_NonRoaded: function () {
         polyline = new google.maps.Polyline({
             strokeColor: "#FF0000", // Цвет
@@ -56,12 +64,12 @@ var Engine = {
         Engine.clearSelection();
         selectedShape = shape;
         shape.setEditable(true);
-    //хитро используем координаты от кукла для фигуры, что бы привести их к виду, который воспримет SQLGeography
+        //хитро используем координаты от гугла для фигуры, что бы привести их к виду, который воспримет SQLGeography
         var coords = "POLYGON((" + selectedShape.getBounds().getNorthEast().lng() + " " + selectedShape.getBounds().getNorthEast().lat() + ", " + selectedShape.getBounds().getNorthEast().lng() + " " + selectedShape.getBounds().getSouthWest().lat() + ", " + selectedShape.getBounds().getSouthWest().lng() + " " + selectedShape.getBounds().getSouthWest().lat() + ", " + selectedShape.getBounds().getSouthWest().lng() + " " + selectedShape.getBounds().getNorthEast().lat() + ", " + selectedShape.getBounds().getNorthEast().lng() + " " + selectedShape.getBounds().getNorthEast().lat() + "))";
         $("#StopGeography").val(coords);
     },
 
-    
+
     clearSelection: function () {
         if (selectedShape) {
             selectedShape.setEditable(false);
@@ -194,9 +202,9 @@ var Engine = {
         start = "";
         end = "";
         way = [];
-        },
+    },
 
-        //Функция для прокладки и отображения маршрута
+    //Функция для прокладки и отображения маршрута
     makeroute: function (location) {
         //        var marker = new google.maps.Marker({
         //                position: location,

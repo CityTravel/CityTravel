@@ -8,6 +8,8 @@ using DomainAutocomplete = CityTravel.Domain.Services.Autocomplete;
 
 namespace CityTravel.Tests.Domain.Services.Autocomplete
 {
+    using CityTravel.Domain.Entities.Autocomplete;
+
     /// <summary>
     /// Autocomplete tests
     /// </summary>

@@ -3,6 +3,8 @@ using Microsoft.SqlServer.Types;
 
 namespace CityTravel.Web.UI.Models
 {
+    using CityTravel.Domain.Entities.Route;
+
     /// <summary>
     /// from one to another viewmodels
     /// </summary>
