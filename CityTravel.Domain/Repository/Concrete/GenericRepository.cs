@@ -214,19 +214,8 @@
         /// </param>
         public void Update(T entity)
         {
-            var data = this.Cache.Get(typeof(T).ToString()) as List<T>;
-            if (data != null)
-            {
-                // TO-DO:data.invvalidate(typeOf(T).toString());
-                var index = data.FindIndex(type => type.Id == entity.Id);
-                data[index] = entity;
-                this.Cache.Set(typeof(T).ToString(), data, TimeSpan.FromMinutes(GeneralSettings.CacheTime));
-                this.DbSet.Attach(entity);
-            }
-            else
-            {
-                this.DbSet.Attach(entity);
-            }
+            this.DbSet.Attach(entity);
+               
         }
 
         /// <summary>
