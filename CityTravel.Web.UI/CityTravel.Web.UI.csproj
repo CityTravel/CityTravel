@@ -69,6 +69,7 @@
     <Reference Include="SquishIt.Framework">
       <HintPath>..\packages\SquishIt.0.7.1\lib\SquishIt.Framework.dll</HintPath>
     </Reference>
+    <Reference Include="System.Data.Entity" />
     <Reference Include="System.Web.Mvc, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Web.WebPages, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Web.Helpers, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
@@ -102,6 +103,7 @@
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\BrowserBlockerController.cs" />
     <Compile Include="Controllers\FeedbackController.cs" />
+    <Compile Include="Controllers\FeedbackDetailsController.cs" />
     <Compile Include="Controllers\MakeRouteController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -276,6 +278,9 @@
   <ItemGroup>
     <Content Include="Views\BrowserBlocker\IEBlocker.cshtml" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\FeedbackDetails\Index.cshtml" />
+  </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
@@ -293,7 +298,7 @@
         <WebProjectProperties>
           <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>58533</DevelopmentServerPort>
+          <DevelopmentServerPort>61290</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>
           </IISUrl>
