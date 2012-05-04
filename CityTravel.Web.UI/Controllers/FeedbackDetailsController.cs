@@ -8,6 +8,7 @@ namespace CityTravel.Web.UI.Controllers
     /// <summary>
     /// Feedback details controller.
     /// </summary>
+    [Authorize]
     public class FeedbackDetailsController : Controller
     {
         /// <summary>
