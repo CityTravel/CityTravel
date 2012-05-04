@@ -2,12 +2,14 @@
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web.Mvc;
-using CityTravel.Domain.Abstract;
-using CityTravel.Domain.Entities;
-using CityTravel.Web.UI.Models;
 
 namespace CityTravel.Web.UI.Controllers
 {
+    using CityTravel.Domain.Entities.Feedback;
+    using CityTravel.Domain.Repository;
+    using CityTravel.Domain.Repository.Abstract;
+    using CityTravel.Web.UI.Models;
+
     /// <summary>
     /// The feedback controller.
     /// </summary>
@@ -32,19 +34,6 @@ namespace CityTravel.Web.UI.Controllers
         #region Public Methods and Operators
 
         /// <summary>
-        /// Feedbacks this instance.
-        /// </summary>
-        /// <returns>
-        /// feedback viewresult
-        /// </returns>
-        public ViewResult Feedback()
-        {
-            var fb =feedbackRepository.All();
-            var feedbackList = fb.ToList();
-            return this.View("Feedback", feedbackList);
-        }
-
-        /// <summary>
         /// Feedbacks the form.
         /// </summary>
         /// <returns>
@@ -52,18 +41,18 @@ namespace CityTravel.Web.UI.Controllers
         /// </returns>
         public PartialViewResult FeedbackForm()
         {
-            var fvm = new FeedbackViewModel();
-            var types = new List<SelectListItem>
+            var feedBackModel = new FeedbackViewModel();
+            var feedBackTypes = new List<SelectListItem>
                 {
                     new SelectListItem { Text = "Мнение", Value = "0" }, 
                     new SelectListItem { Text = "Предложение", Value = "1" }, 
                     new SelectListItem { Text = "Ошибка", Value = "2" }, 
                     new SelectListItem { Text = "Партнерство", Value = "3" }
                 };
-            fvm.Type = types;
 
-            // fvm.SelectedValue = 0.ToString();
-            return this.PartialView("FeedbackForm", fvm);
+            feedBackModel.Type = feedBackTypes;
+
+            return this.PartialView("FeedbackForm", feedBackModel);
         }
 
         /// <summary>
@@ -78,16 +67,11 @@ namespace CityTravel.Web.UI.Controllers
         [HttpPost]
         public ContentResult FeedbackForm(FeedbackViewModel fvm)
         {
-
-            ValidateServerHelper vsh = new ValidateServerHelper();
-
-            // Get the result of the validation
+            var vsh = new ValidateServerHelper();
             ValidationResult validationResult = vsh.FeedBackDataIsValid(fvm);
-
-            // Verify that the entered data to the feedback model is valid
+            
             if (validationResult == ValidationResult.Success)
             {
-
                 var feedback = new Feedback
                 {
                     Email = fvm.Email,
@@ -95,15 +79,18 @@ namespace CityTravel.Web.UI.Controllers
                     Text = fvm.Text,
                     Type = int.Parse(fvm.SelectedValue)
                 };
-                feedbackRepository.Add(feedback);
-                feedbackRepository.Save();
+
+                this.feedbackRepository.Add(feedback);
+                this.feedbackRepository.Save();
                 switch (feedback.Type)
                 {
                     case 0:
+                        this.RedirectToAction("Index", "MakeRoute");
                         return
                             this.Content(
                                 "<div class=\"greetings\" oncreate style=\"text-align:center; padding:20px;\">Спасибо, ваше мнение очень важно для нас. <a class='close' data-dismiss='modal'>×</a></div>",
                             "text/html");
+                        
                     case 1:
                         return
                             this.Content(
@@ -126,11 +113,13 @@ namespace CityTravel.Web.UI.Controllers
                             "text/html");
                 }
             }
-			else // data that were entered to feedback form is incorrect
-				return this.Content(
-							 "<div class=\"greetings\" oncreate style=\"text-align:center\">" + validationResult.ErrorMessage + "</div>",
-							"text/html"); ;
-		}
+            else 
+                return
+                    this.Content(
+                        "<div class=\"greetings\" oncreate style=\"text-align:center\">" + validationResult.ErrorMessage
+                        + "</div>",
+                        "text/html");
+            }
 
         #endregion
     }

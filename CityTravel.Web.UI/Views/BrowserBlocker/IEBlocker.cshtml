@@ -1,0 +1,58 @@
+﻿@{
+    ViewBag.Title = "IEBlocker";
+    Layout = null;
+}
+<link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/IEBlocker/IEBlocker.css")">
+<script type="text/javascript" src="@Url.Content("~/Scripts/jQuery/jquery-1.7.1.min.js")" ></script>
+<script type="text/javascript" src="@Url.Content("~/Scripts/jQuery/jquery.cookie.js")"></script>
+<script>
+    $(document).ready(function () {
+        $("#continueWork").click(function () {
+            $.cookie('IEBlockerCookie', 'true', { expires: 7 ,path: '@Url.Content("~")' });
+        });
+    });
+</script>
+<h2>
+    IEBlocker</h2>
+<div id="IEBlocker">
+    <div id="wariningMessage">
+        <h2>
+            <p>
+                Для хорошего и качественного отображения сервиса мы рекомендуем обновить браузер.</p>
+            Рекомендуем такие браузеры :</h2>
+    </div>
+    <div id="browserImages">
+        <span id="chrome">
+            <p>
+                <a href="https://www.google.com/chrome?hl=ru">
+                    <img src="@Url.Content("~/Content/images/browsers/chrome.jpg")" alt="Click to download Chrome" style="max-width: 200px;
+                            max-height: 120px;" /></a></p>
+            <p>
+                Chrome</p>
+        </span><span id="Mozilla">
+            <p>
+                <a href="http://mozilla-russia.org/">
+                    <img src="@Url.Content("~/Content/images/browsers/mozilla.jpg")" alt="Click to download Mozilla" style="max-width: 200px;
+                            max-height: 120px;" /></a></p>
+            <p>
+                Mozilla</p>
+        </span><span id="Opera">
+            <p>
+                <a href="http://ru.opera.com/download/">
+                    <img src="@Url.Content("~/Content/images/browsers/opera.jpg")" alt="Click to download Opera" style="max-width: 200px;
+                            max-height: 120px;" /></a></p>
+            <p>
+                Opera</p>
+        </span><span id="IE">
+            <p>
+                <a href="http://windows.microsoft.com/ru-RU/internet-explorer/products/ie/home">
+                    <img src="@Url.Content("~/Content/images/browsers/ie.png")" alt="Click to download IE" style="max-width: 200px;
+                            max-height: 120px;" /></a></p>
+            <p>
+                Internet Explorer</p>
+        </span>
+    </div>
+    <div id="resumeWork">
+        <a id="continueWork" href="@Url.Content("~")">Продолжить</a> работу с текущим браузером.
+    </div>
+</div>

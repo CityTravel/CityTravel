@@ -9,6 +9,10 @@ using NUnit.Framework;
 
 namespace CityTravel.Tests.Domain.Entities
 {
+    using CityTravel.Domain.Entities.Route;
+    using CityTravel.Domain.Services.DimensionConverter;
+    using CityTravel.Domain.Services.ModelConverter;
+
     /// <summary>
     /// The route tests.
     /// </summary>
@@ -52,7 +56,7 @@ namespace CityTravel.Tests.Domain.Entities
 		public void CanGetPriceTransport()
 		{
 		    int price = 3;
-		    var result = Route.GetPriceTransport(price);
+            var result = DimensionConverter.GetTransportPrice(price);
 
 		    Assert.AreEqual("3", result);
         }
@@ -67,7 +71,7 @@ namespace CityTravel.Tests.Domain.Entities
             var routes = new List<Route>();
             var route = FakeRepository<Route>.Mock(fakeDbContext.Routes).All();
             routes.Add(route.First());
-            var result = Route.MakeValid(routes);
+            var result = ModelConverter.Convert(routes);
 
             Assert.NotNull(result);
         }

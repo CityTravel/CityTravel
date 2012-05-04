@@ -83,3 +83,24 @@ body
  {
     overflow-y: hidden;
 }
+ #container {
+            margin: 0 auto;
+            width: 700px;
+        }
+ .description {
+            font-size: 1em;
+            margin-bottom: 30px;
+            margin-top: 30px;
+            font-style: italic;
+        }
+#addRouteContainer {
+    float: right;
+}
+#routeListContainer 
+{
+    float: left;
+}
+
+#mainAddRouteContainer {
+    display: inline-block;
+}

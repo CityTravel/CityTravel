@@ -213,6 +213,7 @@ sub
 
 ul, ol
  {
+   
      margin: 1em 0; 
      padding: 0 0 0 40px;
 }
@@ -861,7 +862,8 @@ td
     padding: 0px;
 }
 
-#stepByStepHelper ol li{
+#stepByStepHelper ol li
+{
     font-size: 12px;
     padding: 2px;
 }
@@ -910,11 +912,13 @@ td
  
 .AddRouteFields 
 {
-    margin-left: 30px;
     display: inline-block;
 }
  
- 
+ #addRouteContainer {
+     float: right;
+     
+ }
 /* Print  */
  
 /* Óáèðàåì íå íóæíûå ýëåìíòû ïðè ïå÷àòè */

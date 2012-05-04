@@ -132,6 +132,9 @@
   <data name="AdressError" xml:space="preserve">
     <value>Ошибка ввода адреса</value>
   </data>
+  <data name="AuthenticationError" xml:space="preserve">
+    <value>Неправильное имя пользователя или пароль</value>
+  </data>
   <data name="Cancel" xml:space="preserve">
     <value>Отмена</value>
   </data>
@@ -180,11 +183,23 @@
   <data name="Help" xml:space="preserve">
     <value>Помощь</value>
   </data>
+  <data name="Hour" xml:space="preserve">
+    <value>ч</value>
+  </data>
+  <data name="Kilometr" xml:space="preserve">
+    <value>км</value>
+  </data>
   <data name="MakeRoute" xml:space="preserve">
     <value>Найти</value>
   </data>
+  <data name="Metres" xml:space="preserve">
+    <value>м</value>
+  </data>
   <data name="Metro" xml:space="preserve">
     <value>Метро</value>
+  </data>
+  <data name="Minute" xml:space="preserve">
+    <value>мин</value>
   </data>
   <data name="ModelEmail" xml:space="preserve">
     <value>E-mail:</value>
@@ -206,6 +221,9 @@
   </data>
   <data name="Partnership" xml:space="preserve">
     <value>Партнерство</value>
+  </data>
+  <data name="Price" xml:space="preserve">
+    <value>грн</value>
   </data>
   <data name="PrintRoute" xml:space="preserve">
     <value>Распечатать</value>

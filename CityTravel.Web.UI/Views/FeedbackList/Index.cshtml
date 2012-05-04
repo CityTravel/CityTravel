@@ -1,0 +1,23 @@
+﻿@model CityTravel.Web.UI.Models.FeedbackGridViewModel
+@using Trirand.Web.Mvc
+@using SquishIt.Framework
+
+@{
+    ViewBag.Title = "PerformanceLinqSearch";
+    Layout = null;
+}
+
+    <link rel="stylesheet" type="text/css" media="screen" href="http://ajax.aspnetcdn.com/ajax/jquery.ui/1.8.17/themes/redmond/jquery-ui.css" />
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/TrilandStyles/ui.jqgrid.css")" />    
+    <!-- jQuery library is a prerequisite for jqGrid -->
+    <script src="http://ajax.microsoft.com/ajax/jquery/jquery-1.7.1.min.js" type="text/javascript"></script>
+    <!-- language pack - MUST be included before the jqGrid javascript -->
+    <script type="text/javascript" src="@Url.Content("~/Scripts/Triland/i18n/grid.locale-en.js")"></script>
+    <!-- the jqGrid javascript runtime -->
+    <script type="text/javascript" src="@Url.Content("~/Scripts/Triland/jquery.jqGrid.min.js")"></script>    
+ @Html.AntiForgeryToken()
+    <div>           
+        @Html.Trirand().JQGrid(Model.OrdersGrid, "jqGrid") 
+    </div>
+    <br /><br />
+    
