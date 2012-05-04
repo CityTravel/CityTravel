@@ -88,9 +88,6 @@
     <Reference Include="System.Configuration" />
     <Reference Include="System.Web.Services" />
     <Reference Include="System.EnterpriseServices" />
-    <Reference Include="Trirand.Web.Mvc">
-      <HintPath>C:\Users\noname\Desktop\Files\bin\Trirand.Web.Mvc.dll</HintPath>
-    </Reference>
     <Reference Include="WebActivator">
       <HintPath>..\packages\WebActivator.1.4.4\lib\net40\WebActivator.dll</HintPath>
     </Reference>
@@ -105,7 +102,6 @@
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\BrowserBlockerController.cs" />
     <Compile Include="Controllers\FeedbackController.cs" />
-    <Compile Include="Controllers\FeedbackListController.cs" />
     <Compile Include="Controllers\MakeRouteController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -115,7 +111,6 @@
     <Compile Include="Models\AddRouteTempStopViewModel.cs" />
     <Compile Include="Models\AddRouteViewModel.cs" />
     <Compile Include="Models\AddStopViewModel.cs" />
-    <Compile Include="Models\FeedbackGridViewModel.cs" />
     <Compile Include="Models\FeedbackViewModel.cs" />
     <Compile Include="Models\LogOnViewModel.cs" />
     <Compile Include="Models\MakeRouteViewModel.cs" />
@@ -314,9 +309,6 @@
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Views\FeedbackList\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Account\LogOn.cshtml" />
