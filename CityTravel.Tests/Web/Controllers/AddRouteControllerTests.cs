@@ -10,6 +10,8 @@ using NUnit.Framework;
 
 namespace CityTravel.Tests.Web.Controllers
 {
+    using CityTravel.Domain.Entities.Route;
+
     /// <summary>
     /// The add route controller tests.
     /// </summary>

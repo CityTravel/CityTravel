@@ -22,23 +22,17 @@ var path = new Path();
 
 //DOM loaded event
 $(document).ready(function () {
-
-    //init controls
     controls.init();
     autocomplete.init();
-
-    //init map
     map.init();
-
-    //print function
     $(controls.settings.selectors.printTextVersionButtonSelector).click(function () {
         printBlockRoute();
         map.menu.closeMenu();
     });
-
     $(legend.settings.selector).hide();
     $(controls.settings.selectors.loadingBarBlock).hide(); // hide the loading bar
     ko.applyBindings(viewModel);
+    
 });
 
 

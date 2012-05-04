@@ -8,6 +8,8 @@ using NUnit.Framework;
 
 namespace CityTravel.Tests.Web.Controllers
 {
+    using CityTravel.Domain.Entities.Feedback;
+
     /// <summary>
     /// The feedback controller tests.
     /// </summary>

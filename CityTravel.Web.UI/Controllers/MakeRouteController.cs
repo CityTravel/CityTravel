@@ -2,12 +2,17 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Web.Mvc;
-using CityTravel.Domain.Abstract;
-using CityTravel.Domain.Entities;
 using CityTravel.Web.UI.Models;
 
 namespace CityTravel.Web.UI.Controllers
 {
+    using System.Linq;
+    using CityTravel.Domain.Entities.InvalidWords;
+    using CityTravel.Domain.Entities.Route;
+    using CityTravel.Domain.Helpres;
+    using CityTravel.Domain.Repository.Abstract;
+    using CityTravel.Domain.Services.Segment.Abstract;
+
     /// <summary>
     /// Make route controller
     /// </summary>
@@ -24,8 +29,18 @@ namespace CityTravel.Web.UI.Controllers
         /// Repository for routes.
         /// </summary>
         private readonly IProvider<Route> routeProvider;
-        
+
+        /// <summary>
+        /// Interface of repository of invalid directions.
+        /// </summary>
+        private readonly IProvider<InvalidDirection> directionProvider;
+
+        /// <summary>
+        /// Interface of repository of invalid characters.
+        /// </summary>
+        private readonly IProvider<InvalidCharacter> invalidCharacterProvider; 
         #endregion
+
 
         #region Constructors and Destructors
 
@@ -34,10 +49,18 @@ namespace CityTravel.Web.UI.Controllers
         /// </summary>
         /// <param name="routeSeach">The route seach.</param>
         /// <param name="routeProvider">The route provider.</param>
-        public MakeRouteController(IRouteSeach routeSeach, IProvider<Route> routeProvider)
+        /// <param name="directionProvider">The direction provider.</param>
+        /// <param name="invalidCharacterProvider">The invalid character provider.</param>
+        public MakeRouteController(
+            IRouteSeach routeSeach,
+            IProvider<Route> routeProvider,
+            IProvider<InvalidDirection> directionProvider,
+            IProvider<InvalidCharacter> invalidCharacterProvider)
         {
             this.routeSeach = routeSeach;
             this.routeProvider = routeProvider;
+            this.directionProvider = directionProvider;
+            this.invalidCharacterProvider = invalidCharacterProvider;
         }
 
         #endregion
@@ -78,7 +101,6 @@ namespace CityTravel.Web.UI.Controllers
         [AcceptVerbs(HttpVerbs.Post)]
         public JsonResult Index(MakeRouteViewModel makeRouteViewModel, ValidateServerHelper validateCoords)
         {
-            // Verify the valid of entered data from client (coordinates)
             if (validateCoords.IsValidCoords(makeRouteViewModel) == ValidationResult.Success)
             {
                 var startPoint = new MapPoint(
@@ -87,10 +109,22 @@ namespace CityTravel.Web.UI.Controllers
                 var endPoint = new MapPoint(
                     Convert.ToDouble(makeRouteViewModel.EndPointLatitude),
                     Convert.ToDouble(makeRouteViewModel.EndPointLongitude));
-                var args = new List<Transport> { Transport.Bus };
+                var args = new List<Transport> { Transport.All };
+                var invalidDirections =
+                    this.directionProvider.All().ToList().Select(direction => direction.Direction).ToList();
+                var invalidWords =
+                    this.invalidCharacterProvider.All().ToList().Select(invalidWord => invalidWord.InvalidWord).ToList();
+                var validWords =
+                    this.invalidCharacterProvider.All().ToList().Select(validWord => validWord.ValidWord).ToList();
                 var allRoutes = this.routeSeach.GetAppropriateRoutes(
-                    this.routeProvider.All(), endPoint.ToSqlGeography(), startPoint.ToSqlGeography(), args);
-                var routes = Route.MakeValid(allRoutes);
+                    this.routeProvider.All(),
+                    invalidDirections,
+                    validWords,
+                    invalidWords,
+                    endPoint.ToSqlGeography(),
+                    startPoint.ToSqlGeography(),
+                    args);
+                var routes = ModelConverter.Convert(allRoutes);
 
                 return this.Json(routes);
             }

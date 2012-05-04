@@ -285,4 +285,22 @@
   <data name="ProductName" xml:space="preserve">
     <value>CityTravel</value>
   </data>
+  <data name="Hour" xml:space="preserve">
+    <value>hour</value>
+  </data>
+  <data name="Kilometr" xml:space="preserve">
+    <value>кm</value>
+  </data>
+  <data name="Metres" xml:space="preserve">
+    <value>m</value>
+  </data>
+  <data name="Minute" xml:space="preserve">
+    <value>min</value>
+  </data>
+  <data name="Price" xml:space="preserve">
+    <value>grn</value>
+  </data>
+  <data name="AuthenticationError" xml:space="preserve">
+    <value>Неправильное имя пользователя или пароль</value>
+  </data>
 </root>

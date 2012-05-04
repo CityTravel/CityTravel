@@ -7,6 +7,10 @@ using Microsoft.SqlServer.Types;
 
 namespace CityTravel.Tests.Domain.DomainModel
 {
+    using CityTravel.Domain.Entities.Autocomplete;
+    using CityTravel.Domain.Entities.Feedback;
+    using CityTravel.Domain.Entities.Route;
+
     /// <summary>
     /// The fake db context.
     /// </summary>
