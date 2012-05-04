@@ -9,6 +9,8 @@ using NUnit.Framework;
 
 namespace CityTravel.Tests.Domain.Services
 {
+    using CityTravel.Domain.Entities.Route;
+
     /// <summary>
     /// Route seach test
     /// </summary>

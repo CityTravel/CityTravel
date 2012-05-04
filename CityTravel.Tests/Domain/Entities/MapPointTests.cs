@@ -1,5 +1,5 @@
 ﻿using System.Data.SqlTypes;
-using CityTravel.Domain.Entities;
+using CityTravel.Domain.Entities.Route;
 using NUnit.Framework;
 
 namespace CityTravel.Tests.Domain.Entities

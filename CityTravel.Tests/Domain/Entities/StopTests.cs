@@ -5,6 +5,8 @@ using NUnit.Framework;
 
 namespace CityTravel.Tests.Domain.Entities
 {
+    using CityTravel.Domain.Entities.Route;
+
     /// <summary>
     /// The stop tests.
     /// </summary>

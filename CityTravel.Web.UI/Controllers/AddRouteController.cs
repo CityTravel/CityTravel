@@ -1,8 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Data.SqlTypes;
 using System.Web.Mvc;
-using CityTravel.Domain.Abstract;
-using CityTravel.Domain.Entities;
 using CityTravel.Domain.Settings;
 using CityTravel.Web.UI.Models;
 using Microsoft.SqlServer.Types;
@@ -10,9 +8,15 @@ using SQLSpatialTools;
 
 namespace CityTravel.Web.UI.Controllers
 {
+    using System.Linq;
+
+    using CityTravel.Domain.Entities.Route;
+    using CityTravel.Domain.Repository.Abstract;
+
     /// <summary>
     /// Controller to add new routes and stops.
     /// </summary>
+    [Authorize]
     public class AddRouteController : BaseController
     {
         #region Constants and Fields
@@ -63,7 +67,11 @@ namespace CityTravel.Web.UI.Controllers
         {
             var addRouteViewModel = new AddRouteViewModel
                 { Type = this.itemsForDropDown, Selected = ((int)Transport.Bus).ToString() };
+            var simpleRoutes = this.GetSimpleRoutes(this.routeRepository.All().ToList());
+            addRouteViewModel.Routes = simpleRoutes;
+
             return View("AddRoute", addRouteViewModel);
+            
         }
 
         /// <summary>
@@ -107,6 +115,7 @@ namespace CityTravel.Web.UI.Controllers
                 { Type = this.itemsForDropDown, Selected = ((int)Transport.Bus).ToString() };
             return View("AddStop", addStopViewModel);
         }
+
 
         /// <summary>
         /// Adds the stop.
@@ -268,6 +277,43 @@ namespace CityTravel.Web.UI.Controllers
             }
 
             return connectList;
+        }
+
+        /// <summary>
+        /// Gets the simple routes.
+        /// </summary>
+        /// <param name="routes">The routes.</param>
+        /// <returns></returns>
+        private List<SimpleRouteViewModel> GetSimpleRoutes(List<Route> routes )
+        {
+            return routes.Select(
+                route => new SimpleRouteViewModel
+                    {
+                        Id = route.Id, 
+                        Name = route.Name, 
+                        Points = this.GetPoins(route.RouteGeography)
+                    }).ToList();
+        }
+
+        /// <summary>
+        /// Gets the poins.
+        /// </summary>
+        /// <param name="geography">The geography.</param>
+        /// <returns></returns>
+        private List<MapPoint> GetPoins(SqlGeography geography)
+        {
+            var points = new List<MapPoint>();
+            for (int i = 1; i < geography.STNumPoints() + 1; i++)
+            {
+                points.Add(new MapPoint
+                    {
+                        Latitude = (double)geography.STPointN(i).EnvelopeCenter().Lat,
+                        Longitude = (double)geography.STPointN(i).EnvelopeCenter().Long
+
+                    });
+            }
+
+            return points;
         }
 
         #endregion

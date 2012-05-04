@@ -196,8 +196,6 @@ function MakeRouteViewModel() {
             path.clear();
             viewModel.routeListClear();
             $(legend.settings.selector).hide();
-
-
         }
     });
 
@@ -237,9 +235,15 @@ function MakeRouteViewModel() {
     // find path, if it's possible
     self.findPath = function () {
         if (self.isPathPossible()) {
-            self.getRoutes();
-            self.showLoadingBar();
-            self.isPathFined(true);
+            if (self.startPoint.name() === self.endPoint.name()) {
+                showStickyNoticeToast();
+            } 
+            else {
+                self.getRoutes();
+                self.showLoadingBar();
+                self.isPathFined(true);
+            }
+            
         }
     };
 
@@ -269,225 +273,123 @@ function MakeRouteViewModel() {
 
 
     self.textVersion = {
-    	string: '',
+        string: '',
 
-    	shown: ko.observable(false),
+        shown: ko.observable(false),
 
-    	show: function () {
-    		self.textVersion.shown() ? self.textVersion.shown(false) : self.textVersion.shown(true);
-    		self.routeListShown() ? self.routeListShown(false) : self.routeListShown(true);
-    	},
+        show: function () {
+            self.textVersion.shown() ? self.textVersion.shown(false) : self.textVersion.shown(true);
+            self.routeListShown() ? self.routeListShown(false) : self.routeListShown(true);
+        },
 
-    	removeBadSigns: function (str, filter) {
-    		var strArr = str.split(filter);
+        removeBadSigns: function (str, filter) {
+            var strArr = str.split(filter);
 
-    		if (strArr.length != 0) {
+            if (strArr.length != 0) {
 
-    			str = "";
-    			for (var i = 0; i < strArr.length; i++) {
-    				str += strArr[i];
-    			}
-    		}
+                str = "";
+                for (var i = 0; i < strArr.length; i++) {
+                    str += strArr[i];
+                }
+            }
 
-    		return str;
-    	},
+            return str;
+        },
 
-    	Steps: ko.computed(function () {
-    		var result = "";
-    		if (self.currentRoute() != undefined && self.routeType() == "Walking") {
-    			result = self.textVersion.walkingSteps(self.currentRoute().route);
-    		}
-    		if (self.currentRoute() != undefined && self.routeType() != "Walking") {
-    			result = self.textVersion.transportSteps(self.currentRoute().route);
-    		}
+        Steps: ko.computed(function () {
+            var result = "";
+            if (self.currentRoute() != undefined && self.routeType() == "Walking") {
+                result = self.textVersion.walkingSteps(self.currentRoute().route);
+            }
+            if (self.currentRoute() != undefined && self.routeType() != "Walking") {
+                result = self.textVersion.transportSteps(self.currentRoute().route);
+            }
 
-    		return result;
-    	}),
+            return result;
+        }),
 
-    	showStepsToLand: function (route) {
+        showStepsToLand: function (route) {
 
-    		var transportSteps = "";
-    		var steps = route.WalkingRoutes[0].Steps;
-    		var firstStop = route.Stops[0].Name;
-    		transportSteps = "<ol>";
+            var transportSteps = "";
+            var steps = route.WalkingRoutes[0].Steps;
+            var firstStop = route.Stops[0].Name;
+            transportSteps = "<ol>";
 
-    		for (var i = 0; i < steps.length; i++) {
-    			transportSteps += " " + '<li>' + " " + steps[i].Instruction + self.textVersion.addCssForTimeAndLength(steps[i].Time, steps[i].Length) + '</li>';
-    		}
-    		transportSteps += " " + '<li>' + localizedMessages["Sit"] + " " + '<b><span class="text-transport">' + route.Name.replace(route.Name.slice(0, route.Name.lastIndexOf('а') + 1), "маршрутку") + " " +
+            for (var i = 0; i < steps.length; i++) {
+                transportSteps += " " + '<li style="margin-top:1em;" >' + " " + steps[i].Instruction + self.textVersion.addCSSStyles(steps[i].Time, steps[i].Length) + '</li>';
+            }
+            transportSteps += " " + '<li style="margin-top:1em">' + localizedMessages["Sit"] + " " + '<b><span class="text-transport">' + route.Name.replace(route.Name.slice(0, route.Name.lastIndexOf('а') + 1), "маршрутку") + " " +
                 '</span></b>' + localizedMessages["OnStop"] + " " + '<b>' + firstStop + '</b>'
-                + self.textVersion.addCssForMoneyAndWaitingTime(route.WaitingTime, route.Price) + '</li>';
+                + self.textVersion.addCSSStyles(route.WaitingTime, route.Price) + '</li>';
 
-    		return transportSteps;
 
-    	},
-    	showStepsFromLand: function (route) {
-    		var transportSteps = "";
-    		var steps = route.WalkingRoutes[1].Steps;
-    		var lastStop = route.Stops[route.Stops.length - 1].Name;
-    		transportSteps += " " + '<li>' + localizedMessages["RideUntil"] + " " + '<b>' + lastStop + '</b>' + " " + self.textVersion.addCssForTimeAndLength(route.Time, route.BusLength) + '</li>';
+            return transportSteps;
 
-    		for (var i = 0; i < steps.length; i++) {
-    			transportSteps += " " + '<li>' + ' ' + steps[i].Instruction + self.textVersion.addCssForTimeAndLength(steps[i].Time, steps[i].Length) + '</li>';
-    		}
+        },
+        showStepsFromLand: function (route) {
+            var transportSteps = "";
+            var steps = route.WalkingRoutes[1].Steps;
+            var lastStop = route.Stops[route.Stops.length - 1].Name;
+            transportSteps += " " + '<li style="margin-top:1em;">' + localizedMessages["RideUntil"] + " " + '<b>' + lastStop + '</b>' + " " + self.textVersion.addCSSStyles(route.Time, route.BusLength) + '</li>';
 
-    		transportSteps += '<br />';
-    		transportSteps += self.textVersion.addCssForTotalParams_DistanceMoneyAndTime(route.Price, self.currentRoute().route.Time, self.currentRoute().route.AllLength); // get summary parameters of the route
+            for (var i = 0; i < steps.length; i++) {
+                transportSteps += " " + '<li style="margin-top:1em">' + ' ' + steps[i].Instruction + self.textVersion.addCSSStyles(steps[i].Time, steps[i].Length) + '</li>';
+            }
 
-    		transportSteps += " " + '</ol>';
+            transportSteps += '<br />';
+            transportSteps += self.textVersion.addTransportSummaryCSSStyles(route.Price, self.currentRoute().route.Time, self.currentRoute().route.AllLength); // get summary parameters of the route
 
-    		return transportSteps;
-    	},
+            transportSteps += " " + '</ol>';
 
-    	transportSteps: function (route) {
-    		var transportStepsToLand = self.textVersion.showStepsToLand(route);
-    		var transportStepsFromLand = self.textVersion.showStepsFromLand(route);
-    		var result = transportStepsToLand + transportStepsFromLand;
+            return transportSteps;
+        },
 
-    		return result;
+        transportSteps: function (route) {
+            var transportStepsToLand = self.textVersion.showStepsToLand(route);
+            var transportStepsFromLand = self.textVersion.showStepsFromLand(route);
+            var result = transportStepsToLand + transportStepsFromLand;
 
-    	},
-    	walkingSteps: function (route) {
-    		var stringSteps = "";
-    		var steps = route.Steps;
-    		stringSteps = "<ol>";
-    		for (var i = 0; i < steps.length; i++) {
-    			stringSteps += " " + '<li>' + steps[i].Instruction + self.textVersion.addCssForTimeAndLength(steps[i].Time, steps[i].Length) + '</li>';
-    		}
-    		stringSteps += "</ol>";
-    		return stringSteps;
-    	},
-    	addCssForTimeAndLength: function (time, length) {
+            return result;
 
-    		var result = time != null && length
-                ? '<div style="display:block-inline"><span class="label label-success" > Время: '
-                    + time + ', ' + '</span>' + '<span class="label label-info" " > расстояние: ' + length + '</span></div>'
+        },
+        walkingSteps: function (route) {
+            var stringSteps = "";
+            var steps = route.Steps;
+            stringSteps = "<ol>";
+            for (var i = 0; i < steps.length; i++) {
+                stringSteps += " " + '<li style="margin-top:1em";>' + steps[i].Instruction + self.textVersion.addCSSStyles(steps[i].Time, steps[i].Length) + '</li>';
+            }
+            stringSteps += "</ol><br>";
+            stringSteps += self.textVersion.addWalkSummaryCSSStyles(route.AllLength, route.Time);
+            return stringSteps;
+        },
+        
+        addCSSStyles: function (firstValue, secondValue) {
+            var result = firstValue != null && secondValue
+                ? '<div style="display:inline-block;float:right"><span class="label label-success" style="margin-right:5px;min-width:35px;display:inline-block;" >'
+                    + firstValue + '</span>' + '<span class="label label-info" style="display:inline-block;min-width:35px;" >' + secondValue + '</span></div>'
                     : "";
+            return result;
+        },
+        addTransportSummaryCSSStyles: function (distance, time, money) {
+            var result = distance != null && time && money != null
+                ? '<div style="text-align:center;">' +
+                    '<span class="label label-success" style="margin-right:5px;min-width:40px;display:inline-block;" >' + distance + '</span>' + 
+                    '<span class="label label-info" style="min-width:40px;display:inline-block;" >' + time + '</span>' +
+                    '<span class="label label-warning" style="margin-left:5px;min-width:40px;display:inline-block;" >' + money + '</span></div>'
+                : "";
 
-    		return result;
-    	},
-    	addCssForMoneyAndWaitingTime: function (money, waitingTime) {
-    		var result = money != null && waitingTime != null
-                    ? '<div style="display:block-inline"><span class="label label-success" >Время ожидания: '
-                    + waitingTime + ' мин, ' + '</span>' + '<span class="label label-info" " > стоимость: ' + money + ' грн. ' + '</span></div>'
-                    : "";
+            return result;
+        },
+        addWalkSummaryCSSStyles: function (distance, time) {
+            var result = distance != null && time
+                ? '<div style="text-align:center">' +
+                    '<span class="label label-success" style="margin-right:5px;min-width:40px;display:inline-block;" >' + distance + '</span>' +
+                    '<span class="label label-info" style="margin-left:5px;min-width:40px;display:inline-block;" >' + time + '</span></div>'
+                : "";
 
-    		return result;
-    	},
-    	addCssForTotalParams_DistanceMoneyAndTime: function (money, waitingTime, distance) {
-    		var result = money != null && waitingTime != null && distance != null
-    		                    ? '<div style="display:block-inline;"><strong>Итого:</strong><span class="label label-success" > расстояние ' + distance + ', ' + 'время ' + waitingTime + ', <br />' + '</span>' + '<span class="label label-info" " > стоимость ' + money + ' грн. ' + '</span></div>' : "";
-
-    		return result;
-    	},
-
-    	stepsToLanding: ko.computed(function () {
-    		if (self.currentRoute() != undefined && self.routeType() == "Bus") {
-    			return self.currentRoute().route.WalkingRoutes[0].Steps;
-    		} else {
-    			return '';
-    		}
-    	}),
-
-    	stepsFromLanding: ko.computed(function () {
-    		if (self.currentRoute() != undefined && self.routeType() == "Bus") {
-    			return self.currentRoute().route.WalkingRoutes[1].Steps;
-    		} else {
-    			return '';
-    		}
-    	}),
-
-    	landOnInstruction: ko.computed(function () {
-    		if (self.currentRoute() != undefined && self.routeType() == "Bus") {
-    			return 'Сядьте на маршрутку' + self.currentRoute().route.Number;
-    		} else {
-    			return '';
-    		}
-    	}),
-
-    	landOffInstruction: ko.computed(function () {
-    		if (self.currentRoute() != undefined && self.routeType() == "Bus") {
-    			return 'Едьте до остановки ' + self.currentRoute().route.Stops[self.currentRoute().route.Stops.length - 1].Name;
-    		} else {
-    			return '';
-    		}
-    	}),
-
-    	waitingTime: ko.computed(function () {
-    		if (self.currentRoute() != undefined) {
-    			return self.currentRoute().route.WaitingTime;
-    		} else {
-    			return '';
-    		}
-    	}),
-
-    	price: ko.computed(function () {
-    		if (self.currentRoute() != undefined) {
-    			return self.currentRoute().route.Price;
-    		} else {
-    			return '';
-    		}
-    	}),
-
-    	rideTime: ko.computed(function () {
-    		if (self.currentRoute() != undefined) {
-    			return self.currentRoute().route.RouteTime;
-    		} else {
-    			return '';
-    		}
-    	}),
-
-    	rideLength: ko.computed(function () {
-    		if (self.currentRoute() != undefined) {
-    			return self.currentRoute().route.BusLength;
-    		} else {
-    			return '';
-    		}
-    	}),
-
-    	summaryTime: ko.computed(function () {
-    		if (self.currentRoute() != undefined) {
-    			return self.currentRoute().route.Time;
-    		} else {
-    			return '';
-    		}
-    	}),
-
-    	summaryPrice: ko.computed(function () {
-    		if (self.currentRoute() != undefined) {
-    			var route = self.currentRoute().route;
-    			if (route.Price == null || route.Price == 0) {
-    				route.Price = "0 грн";
-    			}
-    			return route.Price;
-    		} else {
-    			return '';
-    		}
-    	}),
-
-    	summaryLength: ko.computed(function () {
-    		if (self.currentRoute() != undefined) {
-    			return self.currentRoute().route.AllLength;
-    		} else {
-    			return '';
-    		}
-    	}),
-
-    	busLength: ko.computed(function () {
-    		if (self.currentRoute() != undefined) {
-    			return self.currentRoute().route.BusLength;
-    		} else {
-    			return '';
-    		}
-    	}),
-
-    	walkingLength: ko.computed(function () {
-    		if (self.currentRoute() != undefined) {
-    			return self.currentRoute().route.SummaryWalkingLength;
-    		} else {
-    			return '';
-    		}
-    	})
+            return result;
+        }
     };
 }
 

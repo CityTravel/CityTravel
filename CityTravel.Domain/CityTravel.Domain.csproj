@@ -70,44 +70,55 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Abstract\IRouteSeach.cs" />
-    <Compile Include="CacheProvider\DefaultCacheProvider.cs" />
-    <Compile Include="DomainModel\DbContextFactory.cs" />
-    <Compile Include="DomainModel\IDataBaseContext.cs" />
-    <Compile Include="Abstract\IProvider.cs" />
-    <Compile Include="DomainModel\DataBaseContext.cs" />
+    <Compile Include="Services\Segment\Abstract\IRouteSeach.cs" />
+    <Compile Include="Services\AuthenticationProvider\Abstract\IAuthenticationProvider.cs" />
+    <Compile Include="Services\AuthenticationProvider\Concrete\FormsAuthenticationProvider.cs" />
+    <Compile Include="Services\CacheProvider\Concrete\DefaultCacheProvider.cs" />
+    <Compile Include="DomainModel\Concrete\DbContextFactory.cs" />
+    <Compile Include="DomainModel\Abstract\IDataBaseContext.cs" />
+    <Compile Include="Repository\Abstract\IProvider.cs" />
+    <Compile Include="DomainModel\Concrete\DataBaseContext.cs" />
     <Compile Include="Entities\BaseEntity.cs" />
-    <Compile Include="Entities\Building.cs" />
-    <Compile Include="Entities\Feedback.cs" />
-    <Compile Include="Entities\Language.cs" />
-    <Compile Include="Entities\Place.cs" />
-    <Compile Include="Entities\RouteViewModel.cs" />
-    <Compile Include="Entities\Step.cs" />
-    <Compile Include="Entities\StopViewModel.cs" />
-    <Compile Include="Entities\Transport.cs" />
-    <Compile Include="Entities\TransportType.cs" />
-    <Compile Include="Abstract\ICacheProvider.cs" />
-    <Compile Include="Entities\WalkingRoute.cs" />
-    <Compile Include="Entities\WalkingRoutesViewModel.cs" />
+    <Compile Include="Entities\Autocomplete\Building.cs" />
+    <Compile Include="Entities\Feedback\Feedback.cs" />
+    <Compile Include="Entities\Autocomplete\Language.cs" />
+    <Compile Include="Entities\Autocomplete\Place.cs" />
+    <Compile Include="Entities\InvalidWords\InvalidCharacter.cs" />
+    <Compile Include="Entities\InvalidWords\InvalidDirection.cs" />
+    <Compile Include="Entities\SimpleModel\SimpleRoute.cs" />
+    <Compile Include="Entities\Route\Step.cs" />
+    <Compile Include="Entities\SimpleModel\SimpleStop.cs" />
+    <Compile Include="Entities\Route\Transport.cs" />
+    <Compile Include="Entities\Route\TransportType.cs" />
+    <Compile Include="Services\CacheProvider\Abstract\ICacheProvider.cs" />
+    <Compile Include="Entities\Route\WalkingRoute.cs" />
+    <Compile Include="Entities\SimpleModel\SimpleWalkingRoute.cs" />
     <Compile Include="Helpres\GeographyHelpers.cs" />
     <Compile Include="Helpres\GoogleMapHelper.cs" />
-    <Compile Include="Repository\BuildingRepository.cs" />
-    <Compile Include="Repository\FeedbackRepository.cs" />
-    <Compile Include="Repository\GenericRepository.cs" />
-    <Compile Include="Repository\LanguageRepository.cs" />
-    <Compile Include="Repository\PlaceRepository.cs" />
-    <Compile Include="Repository\TransportTypeRepository.cs" />
-    <Compile Include="Entities\Route.cs" />
-    <Compile Include="Entities\MapPoint.cs" />
-    <Compile Include="Entities\Stop.cs" />
+    <Compile Include="Migrations\201204201600422_some.cs" />
+    <Compile Include="Migrations\201204201600422_some.Designer.cs">
+      <DependentUpon>201204201600422_some.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Repository\Concrete\BuildingRepository.cs" />
+    <Compile Include="Repository\Concrete\FeedbackRepository.cs" />
+    <Compile Include="Repository\Concrete\GenericRepository.cs" />
+    <Compile Include="Repository\Concrete\LanguageRepository.cs" />
+    <Compile Include="Repository\Concrete\PlaceRepository.cs" />
+    <Compile Include="Repository\Concrete\TransportTypeRepository.cs" />
+    <Compile Include="Entities\Route\Route.cs" />
+    <Compile Include="Entities\Route\MapPoint.cs" />
+    <Compile Include="Entities\Route\Stop.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Repository\RouteRepository.cs" />
-    <Compile Include="Repository\StopRepository.cs" />
-    <Compile Include="Services\Autocomplete\Autocomplete.cs" />
-    <Compile Include="Services\Autocomplete\AutocompleteViewModel.cs" />
-    <Compile Include="Services\Autocomplete\CacheAutoComplete.cs" />
-    <Compile Include="Services\Autocomplete\IAutocomplete.cs" />
-    <Compile Include="Services\Segment\RouteSeach.cs" />
+    <Compile Include="Repository\Concrete\RouteRepository.cs" />
+    <Compile Include="Repository\Concrete\StopRepository.cs" />
+    <Compile Include="Services\Autocomplete\Concrete\Autocomplete.cs" />
+    <Compile Include="Services\Autocomplete\Concrete\AutocompleteViewModel.cs" />
+    <Compile Include="Services\Autocomplete\Concrete\CacheAutoComplete.cs" />
+    <Compile Include="Services\Autocomplete\Abstract\IAutocomplete.cs" />
+    <Compile Include="Helpres\DimensionConverter.cs" />
+    <Compile Include="Helpres\ModelConverter.cs" />
+    <Compile Include="Services\Segment\Concrete\RouteSeach.cs" />
     <Compile Include="Settings\GeneralSettings.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -140,6 +151,13 @@
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CityTravel.Resources\CityTravel.Resources.csproj">
+      <Project>{C65E7DDB-49C9-4671-94F2-9116E0FF051A}</Project>
+      <Name>CityTravel.Resources</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -1,0 +1,29 @@
+﻿html, body
+{
+    background: #e3e5dc;
+}
+a
+{
+    color: #369;
+}
+.content-500
+{
+    font: 14px/1.6 Tahoma, sans-serif;
+    width: 1024px;
+    height: 800px;
+    margin: 15px auto 0;
+    padding: 15px 0 0;
+    background: #e3e5dc url(../images/Errors/background500.jpg) center 15px no-repeat;
+}
+.text-500
+{
+    margin: 560px 0 50px 327px;
+}
+.text-500 h2
+{
+    margin: 0;
+}
+.text-500 p
+{
+    margin: 10px 0 0;
+}
