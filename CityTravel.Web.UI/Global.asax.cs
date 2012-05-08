@@ -4,7 +4,6 @@ using System.Web.Mvc;
 using System.Web.Routing;
 using CityTravel.Web.UI.Helpers;
 using Ninject;
-using Ninject.Web.Mvc;
 
 namespace CityTravel.Web.UI
 {
@@ -22,7 +21,7 @@ namespace CityTravel.Web.UI
     /// <summary>
     /// The mvc application.
     /// </summary>
-    public class MvcApplication : NinjectHttpApplication
+    public class MvcApplication : HttpApplication
     {
         #region Public Methods and Operators
 
@@ -102,35 +101,43 @@ namespace CityTravel.Web.UI
 
         #region Methods
 
-        /// <summary>
-        /// The create kernel.
-        /// </summary>
-        /// <returns>
-        /// ninject kernel
-        /// </returns>
-        protected override IKernel CreateKernel()
-        {
-            var kernel = new StandardKernel();
-            kernel.Load(Assembly.GetExecutingAssembly());
-            kernel.Bind(typeof(IProvider<>)).To(typeof(GenericRepository<>));
-            kernel.Bind<IAutocomplete>().To<CacheAutoComplete>().InThreadScope();
-            kernel.Bind<IRouteSeach>().To<RouteSeach>();
-            kernel.Bind<IDataBaseContext>().To<DataBaseContext>().InThreadScope();
-            kernel.Bind<IAuthenticationProvider>().To<FormsAuthenticationProvider>().InThreadScope();
+        ///// <summary>
+        ///// The create kernel.
+        ///// </summary>
+        ///// <returns>
+        ///// ninject kernel
+        ///// </returns>
+        //protected override IKernel CreateKernel()
+        //{
+        //    var kernel = new StandardKernel();
+        //    kernel.Load(Assembly.GetExecutingAssembly());
+        //    kernel.Bind(typeof(IProvider<>)).To(typeof(GenericRepository<>));
+        //    kernel.Bind<IAutocomplete>().To<CacheAutoComplete>().InThreadScope();
+        //    kernel.Bind<IRouteSeach>().To<RouteSeach>();
+        //    kernel.Bind<IDataBaseContext>().To<DataBaseContext>().InThreadScope();
+        //    kernel.Bind<IAuthenticationProvider>().To<FormsAuthenticationProvider>().InThreadScope();
 
-            return kernel;
-        }
+        //    return kernel;
+        //}
 
-        /// <summary>
-        /// The on application started.
-        /// </summary>
-        protected override void OnApplicationStarted()
+        ///// <summary>
+        ///// The on application started.
+        ///// </summary>
+        //protected override void OnApplicationStarted()
+        //{
+        //    base.OnApplicationStarted();
+        //    AreaRegistration.RegisterAllAreas();
+        //    RegisterGlobalFilters(GlobalFilters.Filters);
+        //    RegisterRoutes(RouteTable.Routes);
+        //}
+
+        public void Application_Start()
         {
-            base.OnApplicationStarted();
             AreaRegistration.RegisterAllAreas();
             RegisterGlobalFilters(GlobalFilters.Filters);
             RegisterRoutes(RouteTable.Routes);
         }
+
 
         #endregion
 

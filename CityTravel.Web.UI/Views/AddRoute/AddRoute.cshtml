@@ -1,43 +1,16 @@
-﻿@model CityTravel.Web.UI.Models.AddRouteViewModel
+﻿@using SquishIt.Framework
+@using SquishIt.Mvc
+@model CityTravel.Web.UI.Models.AddRouteViewModel
 @{
     ViewBag.Title = "AddRoute";
 }
-@section JavaScript
-{
-    @{
-        <script type="text/javascript">
-            $(document).ready(function () {
-                $("#type").change(function () {
-                    switch ($(this).val()) {
-                    case "2":
-                        Engine.initRoute();
-                        break;
-                    case "4":
-                        Engine.initRoute();
-                        break;
-                    case "5":
-                        Engine.initNonRoute();
-                        break;
-                    case "3":
-                        Engine.initNonRoute();
-                        break;
-                    default:
-                    }
-                });
-            });
-        </script>
-        
-        SquishIt.JavaScript.Add("~/Scripts/My/engine.js");
-        SquishIt.JavaScript.Add(@Url.Content("https://maps.googleapis.com/maps/api/js?v=3&libraries=places&libraries=drawing&sensor=false"));
-    }
-}
 <div id="mainAddRouteContainer">
     <div id="routeListContainer">
-        @Html.ListBox("RouteList", new SelectList(Model.Routes, "Id", "Name"), new { style = "height:600px;"})
+        @Html.ListBox("RouteList", new SelectList(Model.Routes, "Id", "Name"), new { style = "height:600px;" })
         <script>
             var b = new Array();
-                var a = "(@Model.Routes.ToList().FirstOrDefault())";
-           
+            var a = "(@Model.Routes.ToList().FirstOrDefault())";
+
             var b = 1;
         </script>
     </div>
@@ -83,3 +56,28 @@
         </div>
     </div>
 </div>
+@section JavaScript{
+    <script src="//maps.googleapis.com/maps/api/js?v=3&libraries=places&libraries=drawing&sensor=false"></script>
+    @(Bundle.JavaScript().Add("~/Scripts/My/engine.js").MvcRender("~/engine_#.js"))
+    <script type="text/javascript" defer>
+        $(document).ready(function () {
+            $("#type").change(function () {
+                switch ($(this).val()) {
+                    case "2":
+                        Engine.initRoute();
+                        break;
+                    case "4":
+                        Engine.initRoute();
+                        break;
+                    case "5":
+                        Engine.initNonRoute();
+                        break;
+                    case "3":
+                        Engine.initNonRoute();
+                        break;
+                    default:
+                }
+            });
+        });
+    </script>
+}
