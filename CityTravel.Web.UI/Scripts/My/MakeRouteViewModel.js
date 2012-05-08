@@ -1,5 +1,4 @@
-﻿/// <reference path="knockout-2.0.0.debug.js" />
-var ICON_START_POINT = "Content/images/pin-A-drag.png";
+﻿var ICON_START_POINT = "Content/images/pin-A-drag.png";
 var ICON_END_POINT = "Content/images/pin-B.png";
 // Class to represent a route
 function Route(data) {

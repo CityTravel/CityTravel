@@ -1,5 +1,4 @@
-﻿/// <reference path="bootstrap-typeahead.js" />
-//object that incapsulates all controls work
+﻿//object that incapsulates all controls work
 var controls = {
     //controls settings
     settings: {

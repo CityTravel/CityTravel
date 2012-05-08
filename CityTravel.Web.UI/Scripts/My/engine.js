@@ -108,7 +108,7 @@ var Engine = {
                     position: Event.latLng,
                     map: map,
                     title: name,
-                    icon: 'https://chart.googleapis.com/chart?chst=d_fnote&chld=arrow_d|1|000000|h|' + name
+                    icon: '//chart.googleapis.com/chart?chst=d_fnote&chld=arrow_d|1|000000|h|' + name
                 });
             });
 
