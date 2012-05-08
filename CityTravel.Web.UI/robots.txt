@@ -3,6 +3,6 @@
 
 User-agent: *
 Disallow: /
-Host: http://184.82.120.141/trunkCityTravel
+#Host: http://184.82.120.141/trunkCityTravel
 
-Sitemap: http://184.82.120.141/trunkCityTravel/Sitemap.xml
+#Sitemap: http://184.82.120.141/trunkCityTravel/Sitemap.xml

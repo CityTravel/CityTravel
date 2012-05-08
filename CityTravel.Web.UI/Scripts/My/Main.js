@@ -1,7 +1,4 @@
-﻿///<reference path="jquery-1.7.1-vsdoc.js" />
-///<reference path="~/Scripts/PrintVersion.js" />
-///<reference path="~/Scripts/Controls.js" />
-
+﻿
 //Transport types enum
 var TransportType = { "Walking": 0, "Bus": 1, "Subway": 2, "Trolleybus": 3, "Tram": 4 };
 
