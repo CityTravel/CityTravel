@@ -1,6 +1,7 @@
 ﻿namespace CityTravel.Domain.Entities.Route
 {
     using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.DataAnnotations.Schema;
 
     /// <summary>
     /// Types of transport

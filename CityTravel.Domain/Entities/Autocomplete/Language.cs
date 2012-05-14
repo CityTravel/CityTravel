@@ -1,6 +1,6 @@
 ﻿namespace CityTravel.Domain.Entities.Autocomplete
 {
-    using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.DataAnnotations.Schema;
 
     /// <summary>
     /// Entity for Language 

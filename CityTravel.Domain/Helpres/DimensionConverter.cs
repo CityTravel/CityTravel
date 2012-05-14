@@ -1,6 +1,7 @@
 ﻿namespace CityTravel.Domain.Helpres
 {
     using System;
+    using CityTravel.Translations;
 
     /// <summary>
     /// Dimension converter.
@@ -27,8 +28,8 @@
             
             var result = time.TotalMinutes >= Hour
                              ? string.Format(
-                                 Math.Round(time.TotalMinutes / Hour, 1) + "{0}", Resources.Resources.Hour)
-                             : string.Format(time.TotalMinutes.ToString("F0") + "{0}", Resources.Resources.Minute);
+                                 Math.Round(time.TotalMinutes / Hour, 1) + "{0}", Resources.Hour)
+                             : string.Format(time.TotalMinutes.ToString("F0") + "{0}", Resources.Minute);
 
             return result;
         }
@@ -43,8 +44,8 @@
         public static string GetRoundDistance(double distance)
         {
             var result = distance >= Kilometr
-                             ? string.Format(Math.Round(distance / Kilometr, 1) + "{0}", Resources.Resources.Kilometr)
-                             : string.Format(distance.ToString("F0") + "{0}", Resources.Resources.Metres);
+                             ? string.Format(Math.Round(distance / Kilometr, 1) + "{0}", Resources.Kilometr)
+                             : string.Format(distance.ToString("F0") + "{0}", Resources.Metres);
 
             return result;
         }
@@ -58,7 +59,7 @@
         /// </returns>
         public static string GetTransportPrice(float price)
         {
-            return string.Format(price + "{0}", Resources.Resources.Price);
+            return string.Format(price + "{0}", Resources.Price);
         }
     }
 }

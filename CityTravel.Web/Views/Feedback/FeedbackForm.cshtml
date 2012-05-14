@@ -1,0 +1,63 @@
+﻿@model CityTravel.Web.Models.FeedbackViewModel
+@using (Ajax.BeginForm("FeedbackForm", "Feedback", new AjaxOptions
+{
+    UpdateTargetId = "feedback",
+    InsertionMode = InsertionMode.Replace,
+}))
+{
+    <div class="modal hide fade" id="feedback">
+        <div class="modal-header">
+            <a class="close" data-dismiss="modal">×</a>
+            <h3>@Resources.Feedback</h3>
+        </div>
+        <div class="modal-body">
+            <div class="row">
+                <div class="span3">
+                    @Html.LabelFor(model => model.Name)
+                    <div class="input-prepend">
+                        <span class="add-on"><i class="icon-user"></i></span>
+                        @Html.EditorFor(model => model.Name)
+                    </div>
+                    <div class="control-group error">
+                        @Html.ValidationMessageFor(model => model.Name)
+                    </div>
+                    @Html.LabelFor(model => model.Email)
+                    <div class="input-prepend">
+                        <span class="add-on"><i class="icon-envelope"></i></span>
+                        @Html.EditorFor(model => model.Email)
+                    </div>
+                    <div class="control-group error">
+                        @Html.ValidationMessageFor(model => model.Email)
+                    </div>
+                </div>
+                <div class="span2">
+                    @Html.LabelFor(model => model.Type)
+                    @foreach (var type in Model.Type)
+                    {
+                        <label class="radio">
+                            @Html.RadioButtonFor(m => m.SelectedValue, type.Value) @type.Text</label>
+                    }
+                    <div class="control-group error">
+                        @Html.ValidationMessageFor(model => model.SelectedValue)
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="span5">
+                    @Html.LabelFor(model => model.Text)
+                    <div>
+                        @Html.TextAreaFor(m => m.Text, new { @style = "width:440px; height:100px" })
+                    </div>
+                    <div class="control-group error">
+                        @Html.ValidationMessageFor(model => model.Text)
+                    </div>
+                    <label>@Resources.FieldsRequired</label>
+                </div>
+            </div>
+            <div class="modal-footer" id="feedback-footer">
+                <input type="submit" value="Отправить" class="btn btn-primary" />
+                <a href="#" class="btn" data-dismiss="modal">@Resources.Close</a>
+            </div>
+        </div>
+    </div>
+}
