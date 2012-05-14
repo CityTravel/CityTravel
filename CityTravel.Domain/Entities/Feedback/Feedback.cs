@@ -1,6 +1,7 @@
 ﻿namespace CityTravel.Domain.Entities.Feedback
 {
     using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.DataAnnotations.Schema;
 
     /// <summary>
     /// The feedback.

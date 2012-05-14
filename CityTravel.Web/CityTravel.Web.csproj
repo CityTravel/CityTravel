@@ -1,0 +1,408 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{D12D0630-CE93-4BE9-BD00-59FE06EA47A9}</ProjectGuid>
+    <ProjectTypeGuids>{E3E379DF-F4C6-4180-9B81-6769533ABE47};{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>CityTravel.Web</RootNamespace>
+    <AssemblyName>CityTravel.Web</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <OldToolsVersion>4.0</OldToolsVersion>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UpgradeBackupLocation />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AjaxMin, Version=4.51.4507.18296, Culture=neutral, PublicKeyToken=21ef50ce11b5d80f, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\AjaxMin.4.51.4507.18296\lib\net20\AjaxMin.dll</HintPath>
+    </Reference>
+    <Reference Include="dotless.Core, Version=1.3.0.3, Culture=neutral, PublicKeyToken=96b446c9e63eae34, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\dotless.1.3.0.3\lib\dotless.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="EcmaScript.NET.modified, Version=0.1.1.0, Culture=neutral, PublicKeyToken=7d53ba4f537753a5, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\YUICompressor.NET.1.7.1.0\lib\net35\EcmaScript.NET.modified.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\EntityFramework.5.0.0-beta2\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="Jurassic, Version=2.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Jurassic.2.1.1\lib\Jurassic.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.SqlServer.Types, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\external libs\MS Sql Server Types\Microsoft.SqlServer.Types.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.4.5.5\lib\net40\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Ninject">
+      <HintPath>..\packages\Ninject.3.0.0.15\lib\net45-full\Ninject.dll</HintPath>
+    </Reference>
+    <Reference Include="Ninject.Web.Common">
+      <HintPath>..\packages\Ninject.Web.Common.3.0.0.7\lib\net45-full\Ninject.Web.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Ninject.Web.Mvc">
+      <HintPath>..\packages\Ninject.MVC3.3.0.0.6\lib\net45-full\Ninject.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="SQLSpatialTools">
+      <HintPath>..\external libs\Sql Spatial Tools\SQLSpatialTools.dll</HintPath>
+    </Reference>
+    <Reference Include="SquishIt.Framework, Version=0.8.6.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\SquishIt.0.8.6\lib\SquishIt.Framework.dll</HintPath>
+    </Reference>
+    <Reference Include="SquishIt.Mvc, Version=0.8.6.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\SquishIt.Mvc.0.8.6\lib\SquishIt.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Json, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\System.Json.4.0.20126.16343\lib\net40\System.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http">
+      <Private>True</Private>
+      <HintPath>..\packages\System.Net.Http.2.0.20126.16343\lib\net40\System.Net.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.Formatting, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\System.Net.Http.Formatting.4.0.20126.16343\lib\net40\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest">
+      <Private>True</Private>
+      <HintPath>..\packages\System.Net.Http.2.0.20126.16343\lib\net40\System.Net.Http.WebRequest.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Helpers, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\AspNetWebPages.Core.2.0.20126.16343\lib\net40\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\AspNetWebApi.Core.4.0.20126.16343\lib\net40\System.Web.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http.Common, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\System.Web.Http.Common.4.0.20126.16343\lib\net40\System.Web.Http.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http.WebHost, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\AspNetWebApi.4.0.20126.16343\lib\net40\System.Web.Http.WebHost.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\AspNetMvc.4.0.20126.16343\lib\net40\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Providers">
+      <HintPath>..\packages\System.Web.Providers.Core.1.0\lib\net40\System.Web.Providers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\AspNetRazor.Core.2.0.20126.16343\lib\net40\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\AspNetWebPages.Core.2.0.20126.16343\lib\net40\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\AspNetWebPages.Core.2.0.20126.16343\lib\net40\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\AspNetWebPages.Core.2.0.20126.16343\lib\net40\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="WebActivator">
+      <HintPath>..\packages\WebActivator.1.5\lib\net40\WebActivator.dll</HintPath>
+    </Reference>
+    <Reference Include="Yahoo.Yui.Compressor, Version=1.7.1.0, Culture=neutral, PublicKeyToken=f8b4b81ec75097e2, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\YUICompressor.NET.1.7.1.0\lib\net35\Yahoo.Yui.Compressor.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\NinjectWebCommon.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AddRouteController.cs" />
+    <Compile Include="Controllers\AutocompleteController.cs" />
+    <Compile Include="Controllers\BaseController.cs" />
+    <Compile Include="Controllers\BrowserBlockerController.cs" />
+    <Compile Include="Controllers\FeedbackController.cs" />
+    <Compile Include="Controllers\FeedbackDetailsController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\MakeRouteController.cs" />
+    <Compile Include="Controllers\ValuesController.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Helpers\CultureHelper.cs" />
+    <Compile Include="Helpers\ValidateServerHelper.cs" />
+    <Compile Include="Models\AddRouteTempStopViewModel.cs" />
+    <Compile Include="Models\AddRouteViewModel.cs" />
+    <Compile Include="Models\AddStopViewModel.cs" />
+    <Compile Include="Models\FeedbackViewModel.cs" />
+    <Compile Include="Models\LogOnViewModel.cs" />
+    <Compile Include="Models\MakeRouteViewModel.cs" />
+    <Compile Include="Models\SimpleRouteViewModel.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="css\bootstrap\images\glyphicons-halflings-white.png" />
+    <Content Include="css\bootstrap\images\glyphicons-halflings.png" />
+    <Content Include="css\Errors\Error500.css" />
+    <Content Include="css\Errors\Page404.css" />
+    <Content Include="css\IEBlocker\IEBlocker.css" />
+    <Content Include="Content\images\aboutUsPict\Dnepr_logo.jpg" />
+    <Content Include="Content\images\aboutUsPict\Exigen_logo.png" />
+    <Content Include="Content\images\browsers\chrome.jpg" />
+    <Content Include="Content\images\browsers\ie.png" />
+    <Content Include="Content\images\browsers\mozilla.jpg" />
+    <Content Include="Content\images\browsers\opera.jpg" />
+    <Content Include="Content\images\bus.png" />
+    <Content Include="Content\images\circle-small.png" />
+    <Content Include="Content\images\distance.gif" />
+    <Content Include="Content\images\Errors\background404.jpg" />
+    <Content Include="Content\images\Errors\background500.jpg" />
+    <Content Include="Content\images\Errors\error-500-custom-page.jpg" />
+    <Content Include="Content\images\Errors\main_image404.gif" />
+    <Content Include="Content\images\exchange.png" />
+    <Content Include="Content\images\header_bus.png" />
+    <Content Include="Content\images\header_price.png" />
+    <Content Include="Content\images\header_walk.png" />
+    <Content Include="Content\images\loader_2.gif" />
+    <Content Include="Content\images\loading.gif" />
+    <Content Include="Content\images\loading_background.png" />
+    <Content Include="Content\images\logo.png" />
+    <Content Include="Content\images\menu\stretch.gif" />
+    <Content Include="Content\images\pin-A-drag.png" />
+    <Content Include="Content\images\pin-B.png" />
+    <Content Include="Content\images\point-A.png" />
+    <Content Include="Content\images\point-B.png" />
+    <Content Include="Content\images\small_bus.png" />
+    <Content Include="Content\images\stops\busstop.png" />
+    <Content Include="Content\images\subway.png" />
+    <Content Include="Content\images\time.png" />
+    <Content Include="Content\images\toastMessage\close.gif" />
+    <Content Include="Content\images\toastMessage\error.png" />
+    <Content Include="Content\images\toastMessage\notice.png" />
+    <Content Include="Content\images\toastMessage\success.png" />
+    <Content Include="Content\images\toastMessage\warning.png" />
+    <Content Include="Content\images\tramway.png" />
+    <Content Include="Content\images\trolleybus.png" />
+    <Content Include="Content\images\walk.png" />
+    <Content Include="crossdomain.xml" />
+    <Content Include="css\bootstrap\bootstrap-responsive.css" />
+    <Content Include="css\bootstrap\bootstrap-responsive.min.css" />
+    <Content Include="css\bootstrap\bootstrap.css" />
+    <Content Include="css\bootstrap\bootstrap.min.css" />
+    <Content Include="css\jquery.toastmessage\jquery.toastmessage.css" />
+    <Content Include="css\my\AboutUs.css" />
+    <Content Include="css\my\AddRoute.css" />
+    <Content Include="css\my\Base.css" />
+    <Content Include="css\my\Controls.css" />
+    <Content Include="css\my\loadingBar.css" />
+    <Content Include="css\my\Map.css" />
+    <Content Include="css\my\Print.css" />
+    <Content Include="css\my\queryLoader.css" />
+    <Content Include="Errors\Page404.htm" />
+    <Content Include="Errors\Page500.htm" />
+    <Content Include="Global.asax" />
+    <Content Include="humans.txt" />
+    <Content Include="js\bootstrap\plugins\bootstrap-button.js" />
+    <Content Include="js\bootstrap\plugins\bootstrap-popover.js" />
+    <Content Include="js\bootstrap\plugins\bootstrap-tooltip.js" />
+    <Content Include="js\bootstrap\plugins\bootstrap-typeahead.js" />
+    <Content Include="js\bootstrap\_references.js" />
+    <Content Include="js\jQuery\plugins\jquery.cookie.js" />
+    <Content Include="js\jQuery\plugins\jquery.toastmessage.js" />
+    <Content Include="js\jQuery\plugins\_references.js" />
+    <Content Include="js\json2\json2.js" />
+    <Content Include="js\knockout\_references.js" />
+    <Content Include="js\modernizr\_references.js" />
+    <Content Include="js\my\AutocompleteNew.js" />
+    <Content Include="js\my\ControlsNew.js" />
+    <Content Include="js\my\engine.js" />
+    <Content Include="js\my\Feedback.js" />
+    <Content Include="js\my\Helpers.js" />
+    <Content Include="js\my\Legend.js" />
+    <Content Include="js\my\Main.js" />
+    <Content Include="js\my\MakeRouteViewModel.js" />
+    <Content Include="js\my\Map.js" />
+    <Content Include="js\my\Path.js" />
+    <Content Include="js\my\PrintVersion.js" />
+    <Content Include="js\my\ToastMessage.js" />
+    <Content Include="js\my\_references.js" />
+    <Content Include="robots.txt" />
+    <Content Include="js\bootstrap\core\bootstrap.js" />
+    <Content Include="js\bootstrap\core\bootstrap.min.js" />
+    <Content Include="js\jQuery\core\jquery-1.7.2.intellisense.js" />
+    <Content Include="js\jQuery\core\jquery-1.7.2.js" />
+    <Content Include="js\jQuery\core\jquery-1.7.2.min.js" />
+    <Content Include="js\jQuery\plugins\jquery.unobtrusive-ajax.js" />
+    <Content Include="js\jQuery\plugins\jquery.unobtrusive-ajax.min.js" />
+    <Content Include="js\jQuery\plugins\jquery.validate-vsdoc.js" />
+    <Content Include="js\jQuery\plugins\jquery.validate.js" />
+    <Content Include="js\jQuery\plugins\jquery.validate.min.js" />
+    <Content Include="js\jQuery\plugins\jquery.validate.unobtrusive.js" />
+    <Content Include="js\jQuery\plugins\jquery.validate.unobtrusive.min.js" />
+    <Content Include="js\knockout\knockout-2.1.0.debug.js" />
+    <Content Include="js\knockout\knockout-2.1.0.js" />
+    <Content Include="js\modernizr\modernizr-2.5.3.js" />
+    <Content Include="Sitemap.xml" />
+    <Content Include="Web.config" />
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Images\accent.png" />
+    <Content Include="Images\aspNetHome.png" />
+    <Content Include="Images\bullet.png" />
+    <Content Include="Images\facebook.png" />
+    <Content Include="Images\findHosting.png" />
+    <Content Include="Images\heroAccent.png" />
+    <Content Include="Images\NuGetGallery.png" />
+    <Content Include="Images\orderedListOne.png" />
+    <Content Include="Images\orderedListTwo.png" />
+    <Content Include="Images\orderedListThree.png" />
+    <Content Include="Images\twitter.png" />
+    <Content Include="Images\windowsLive.png" />
+    <Content Include="Views\Web.config" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="packages.config">
+      <SubType>Designer</SubType>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Account\LogOn.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\AddRoute\AddRoute.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\AddRoute\AddStop.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\BrowserBlocker\IEBlocker.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Feedback\FeedbackForm.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\FeedbackDetails\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\MakeRoute\AboutUs.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\MakeRoute\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CityTravel.Domain\CityTravel.Domain.csproj">
+      <Project>{3437c303-4bf4-4937-822e-0e1b6eb860d1}</Project>
+      <Name>CityTravel.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CityTravel.Resources\CityTravel.Translations.csproj">
+      <Project>{c65e7ddb-49c9-4671-94f2-9116e0ff051a}</Project>
+      <Name>CityTravel.Translations</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\PublishProfiles\localIIS.pubxml" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target> -->
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>0</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:64862/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+</Project>

@@ -1,7 +1,7 @@
 ﻿namespace CityTravel.Domain.Entities.Route
 {
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.DataAnnotations.Schema;
 
     using CityTravel.Domain.Helpres;
 

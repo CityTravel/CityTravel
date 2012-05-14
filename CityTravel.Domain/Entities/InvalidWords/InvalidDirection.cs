@@ -5,7 +5,7 @@ using System.Text;
 
 namespace CityTravel.Domain.Entities.InvalidWords
 {
-    using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.DataAnnotations.Schema;
 
     /// <summary>
     /// Invalid directions in text instruction.

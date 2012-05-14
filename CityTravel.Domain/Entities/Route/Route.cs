@@ -3,11 +3,8 @@
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
-    using System.Linq;
-
-    using CityTravel.Domain.Entities.SimpleModel;
+    using System.ComponentModel.DataAnnotations.Schema;
     using CityTravel.Domain.Helpres;
-
     using Microsoft.SqlServer.Types;
 
     /// <summary>
