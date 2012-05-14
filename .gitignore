@@ -25,3 +25,4 @@
 *.suo
 /CityTravel.Web.UI/Content/combined_3511A88C9EC3A41737CE5F0D3562C9DC.css
 /CityTravel.Web.UI/Content/combined_CCEC7BA181E4B627FA0CEA1094670055.css
+/packages/knockoutjs.2.0.0.1
